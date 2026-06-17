@@ -1,0 +1,2880 @@
+<!-- Design system dependencies used by this Hero snippet -->
+<link rel="stylesheet" href="assets/6d92dfc1700fd38c_bootstrap.min.css" />
+<link rel="stylesheet" href="assets/24fbf98a0312aa6d_hamburgers.min.css" />
+<link rel="stylesheet" href="assets/e9417875b1420aaf_style.css" />
+<link rel="stylesheet" href="assets/ccd31ffa708d0258_styles.css" />
+<link rel="preconnect" href="https://use.typekit.net" />
+<link rel="stylesheet" href="https://use.typekit.net/rbs3wgu.css" />
+
+<style>
+  .marcos-hero {
+    --hero-pad-x: 3.1vw;
+    --hero-safe-bottom: 3.2vw;
+    --hero-spotlight-x: 68%;
+    --hero-spotlight-y: 42%;
+    --hero-spotlight-size: 24vw;
+    isolation: isolate;
+    min-height: 100vh;
+    max-height: none;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .marcos-hero.first-section {
+    display: block;
+    padding: 0;
+  }
+
+  .marcos-hero__background,
+  .marcos-hero__video,
+  .marcos-hero__fallback,
+  .marcos-hero__shade,
+  .marcos-hero__spotlight {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .marcos-hero__background {
+    z-index: 0;
+    background: var(--black) url("raw_files/hero-background-fallback.jpg") center / cover no-repeat;
+  }
+
+  .marcos-hero__video,
+  .marcos-hero__fallback {
+    object-fit: cover;
+  }
+
+  .marcos-hero__video {
+    z-index: 1;
+    filter: saturate(0.92) contrast(1.08) brightness(0.72);
+  }
+
+  .marcos-hero__fallback {
+    z-index: 0;
+  }
+
+  .marcos-hero__shade {
+    z-index: 2;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.94) 0%, rgba(0, 0, 0, 0.78) 42%, rgba(0, 0, 0, 0.62) 100%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.20) 44%, rgba(0, 0, 0, 0.72) 100%);
+    pointer-events: none;
+  }
+
+  .marcos-hero__spotlight {
+    z-index: 3;
+    background:
+      radial-gradient(
+        circle var(--hero-spotlight-size) at var(--hero-spotlight-x) var(--hero-spotlight-y),
+        rgba(0, 0, 0, 0.10) 0%,
+        rgba(0, 0, 0, 0.26) 24%,
+        rgba(0, 0, 0, 0.72) 68%,
+        rgba(0, 0, 0, 0.90) 100%
+      );
+    opacity: 0.94;
+    pointer-events: none;
+    transition: opacity 0.8s ease-in-out;
+  }
+
+  .marcos-hero__content {
+    position: relative;
+    z-index: 4;
+    min-height: 100%;
+    width: min(66vw, 1060px);
+    padding: 10vh var(--hero-pad-x) calc(var(--hero-safe-bottom) + 5vh);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .marcos-hero__kicker {
+    margin: 0 0 1.1vw;
+    color: var(--red);
+    letter-spacing: 0.12em;
+    font-weight: 700;
+  }
+
+  .marcos-hero__title {
+    max-width: 11.6ch;
+    margin: 0;
+    font-size: clamp(62px, 5vw, 98px);
+    letter-spacing: -0.03em;
+    line-height: 0.82;
+    text-wrap: balance;
+  }
+
+  .marcos-hero__summary {
+    max-width: min(41vw, 700px);
+    margin: 1.65vw 0 0;
+    font-size: clamp(22px, 1.42vw, 30px);
+    line-height: 1.2;
+    color: rgba(255, 255, 255, 0.78);
+    letter-spacing: -0.01em;
+  }
+
+  .marcos-hero__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.8vw;
+    margin-top: 1.9vw;
+  }
+
+  .marcos-hero .btn-circle {
+    margin: 0;
+    padding: 1.05vw 1.55vw 1.18vw;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.4vw;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .marcos-hero__cta-primary {
+    border-color: var(--red);
+    background: var(--red);
+    color: var(--white) !important;
+  }
+
+  .marcos-hero__cta-primary:hover,
+  .marcos-hero__cta-primary:focus-visible {
+    border-color: var(--white);
+    background: var(--white);
+    color: var(--black) !important;
+  }
+
+  .marcos-hero__cta-secondary {
+    color: rgba(255, 255, 255, 0.88) !important;
+    background: rgba(0, 0, 0, 0.10);
+  }
+
+  .marcos-hero__cta-secondary:hover,
+  .marcos-hero__cta-secondary:focus-visible {
+    color: var(--white) !important;
+  }
+
+  .marcos-hero__proof {
+    max-width: 42vw;
+    margin: 1vw 0 0;
+    color: rgba(255, 255, 255, 0.54);
+    letter-spacing: 0.01em;
+  }
+
+  .marcos-hero__scroll {
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    bottom: var(--hero-safe-bottom);
+    width: 0.8vw;
+    min-width: 12px;
+    transform: translateX(-50%) rotate(90deg);
+    color: var(--white);
+    opacity: 0.72;
+    animation: marcosHeroArrow 1.5s infinite;
+  }
+
+  .marcos-hero__scroll svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .marcos-hero [data-hero-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 1.5vw, 0);
+    transition:
+      opacity 0.7s cubic-bezier(0.8, 0, 0, 0.8),
+      transform 0.7s cubic-bezier(0.8, 0, 0, 0.8);
+    transition-delay: var(--hero-reveal-delay, 0s);
+    will-change: transform, opacity;
+  }
+
+  .marcos-hero.is-ready [data-hero-reveal] {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  @keyframes marcosHeroArrow {
+    0% { transform: translateY(-50%) rotate(90deg) translateX(0); }
+    50% { transform: translateY(-50%) rotate(90deg) translateX(0.5vw); }
+    100% { transform: translateY(-50%) rotate(90deg) translateX(0); }
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .marcos-hero {
+      height: auto;
+      min-height: 100svh;
+    }
+
+    .marcos-hero__shade {
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.66) 58%, rgba(0, 0, 0, 0.86) 100%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.74) 0%, rgba(0, 0, 0, 0.50) 100%);
+    }
+
+    .marcos-hero__spotlight {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .marcos-hero {
+      --hero-pad-x: 24px;
+      --hero-safe-bottom: 24px;
+      min-height: 100svh;
+    }
+
+    .marcos-hero__content {
+      width: 100%;
+      min-height: 100svh;
+      padding: 92px var(--hero-pad-x) 78px;
+      align-items: flex-start;
+    }
+
+    .marcos-hero__kicker {
+      margin-bottom: 18px;
+      font-size: 12px;
+      line-height: 1.15;
+    }
+
+    .marcos-hero__title {
+      max-width: 100%;
+      font-size: clamp(46px, 13.2vw, 62px);
+      line-height: 0.78;
+    }
+
+    .marcos-hero__summary {
+      max-width: 100%;
+      margin-top: 20px;
+      font-size: 18px;
+      line-height: 1.2;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .marcos-hero__actions {
+      width: 100%;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .marcos-hero .btn-circle {
+      width: 100%;
+      min-height: 54px;
+      padding: 17px 18px 19px;
+      border-radius: 100vw;
+      font-size: 15px;
+    }
+
+    .marcos-hero__proof {
+      max-width: 100%;
+      margin-top: 14px;
+      font-size: 15px;
+      line-height: 1.2;
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    .marcos-hero__scroll {
+      width: 12px;
+      bottom: 24px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marcos-hero__video {
+      display: none;
+    }
+
+    .marcos-hero__spotlight {
+      display: none;
+    }
+
+    .marcos-hero [data-hero-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .marcos-hero__scroll {
+      animation: none;
+    }
+  }
+
+  .section--capabilities {
+    position: relative;
+    overflow: hidden;
+    padding: 4.2vw 0 4.5vw;
+    background: var(--black);
+    color: var(--white);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .capabilities__track {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    display: flex;
+  }
+
+  .capabilities__track + .capabilities__track {
+    margin-top: 0.7vw;
+  }
+
+  .capabilities__rail {
+    display: inline-flex;
+    align-items: center;
+    min-width: max-content;
+    animation-duration: 38s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+  }
+
+  .capabilities__track--top .capabilities__rail {
+    animation-name: capabilitiesMarqueeRight;
+  }
+
+  .capabilities__track--bottom .capabilities__rail {
+    animation-name: capabilitiesMarqueeLeft;
+    animation-duration: 42s;
+  }
+
+  .capabilities__line {
+    display: inline-flex;
+    align-items: center;
+    padding-right: 2.4vw;
+    font-size: clamp(38px, 4.35vw, 86px);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    color: rgba(255, 255, 255, 0.94);
+  }
+
+  .capabilities__track--bottom .capabilities__line {
+    color: rgba(255, 255, 255, 0.42);
+  }
+
+  .capabilities__sep {
+    display: inline-block;
+    margin: 0 1.2vw;
+    color: var(--red);
+    font-style: normal;
+    transform: translateY(-0.08em);
+  }
+
+  @keyframes capabilitiesMarqueeLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes capabilitiesMarqueeRight {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .section--capabilities {
+      padding: 44px 0 48px;
+    }
+
+    .capabilities__track + .capabilities__track {
+      margin-top: 8px;
+    }
+
+    .capabilities__line {
+      padding-right: 24px;
+      font-size: clamp(28px, 10vw, 42px);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .capabilities__sep {
+      margin: 0 12px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .capabilities__track {
+      white-space: normal;
+    }
+
+    .capabilities__track .capabilities__rail {
+      animation: none;
+      transform: none;
+      flex-wrap: wrap;
+      row-gap: 0.35em;
+      padding: 0 24px;
+    }
+
+    .capabilities__line {
+      white-space: normal;
+      padding-right: 0;
+    }
+
+    .capabilities__line[aria-hidden="true"] {
+      display: none;
+    }
+  }
+
+  .section--work {
+    position: relative;
+    overflow: hidden;
+    padding: 8.4vw 0 9.2vw;
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .marcos-work__container {
+    width: calc(100% - 6.2vw);
+    margin: 0 auto;
+  }
+
+  .marcos-work__header {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2.4vw;
+    align-items: end;
+    margin-bottom: 2.4vw;
+  }
+
+  .marcos-work__label {
+    grid-column: 1 / span 4;
+    margin: 0;
+    color: var(--red);
+    letter-spacing: 0.12em;
+    font-weight: 700;
+  }
+
+  .marcos-work__intro {
+    grid-column: 7 / span 5;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.56);
+    letter-spacing: -0.01em;
+  }
+
+  .marcos-work__stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55vw;
+  }
+
+  .marcos-work__card {
+    --work-card-h: 12vw;
+    position: relative;
+    display: block;
+    min-height: var(--work-card-h);
+    overflow: hidden;
+    border-radius: 3.6vw;
+    background: #070707;
+    color: var(--white) !important;
+    text-decoration: none !important;
+    outline: none;
+    transform: translate3d(0, 0, 0);
+    transition:
+      transform 0.3s ease-in-out,
+      box-shadow 0.3s ease-in-out,
+      opacity 0.3s ease-in-out,
+      filter 0.3s ease-in-out;
+  }
+
+  .marcos-work__card--featured {
+    --work-card-h: 38.5vw;
+    border: 2px solid var(--red);
+  }
+
+  .marcos-work__media,
+  .marcos-work__video,
+  .marcos-work__overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .marcos-work__media {
+    z-index: 0;
+    background:
+      radial-gradient(circle at 72% 42%, rgba(255, 0, 0, 0.20), rgba(255, 0, 0, 0) 32%),
+      linear-gradient(135deg, #111 0%, var(--black) 100%);
+  }
+
+  .marcos-work__video {
+    object-fit: cover;
+    opacity: 0.72;
+    filter: saturate(0.82) contrast(1.08) brightness(0.70);
+    transform: scale(1.01);
+    transition:
+      opacity 0.5s ease-in-out,
+      filter 0.5s ease-in-out,
+      transform 0.5s ease-in-out;
+  }
+
+  .marcos-work__overlay {
+    z-index: 1;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.36) 44%, rgba(0, 0, 0, 0.78) 100%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.68) 100%);
+  }
+
+  .marcos-work__inner {
+    position: relative;
+    z-index: 2;
+    min-height: var(--work-card-h);
+    padding: 1.1vw 1.25vw 1.25vw 2vw;
+    display: grid;
+    grid-template-columns: minmax(17vw, 0.8fr) minmax(0, 1.6fr) auto;
+    gap: 2vw;
+    align-items: center;
+  }
+
+  .marcos-work__card--featured .marcos-work__inner {
+    padding: 2vw 2.4vw 2.2vw;
+    grid-template-columns: minmax(20vw, 0.8fr) minmax(0, 1.5fr);
+    grid-template-rows: auto 1fr auto;
+    align-items: start;
+  }
+
+  .marcos-work__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65vw;
+    align-self: start;
+  }
+
+  .marcos-work__badge,
+  .marcos-work__cta {
+    border: 1px solid var(--white);
+    border-radius: 100vw;
+    width: fit-content;
+    white-space: nowrap;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .marcos-work__badge {
+    padding: 0.7vw 1.4vw;
+    color: var(--white);
+  }
+
+  .marcos-work__services {
+    max-width: 24vw;
+    color: rgba(255, 255, 255, 0.68);
+    letter-spacing: 0.02em;
+  }
+
+  .marcos-work__title {
+    justify-self: end;
+    margin: 0;
+    max-width: 100%;
+    font-size: clamp(52px, 5.9vw, 118px);
+    line-height: 0.78;
+    letter-spacing: -0.04em;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .marcos-work__card--featured .marcos-work__title {
+    grid-column: 1 / -1;
+    align-self: center;
+    justify-self: end;
+    font-size: clamp(82px, 12vw, 220px);
+    line-height: 0.74;
+  }
+
+  .marcos-work__cta {
+    justify-self: end;
+    align-self: end;
+    padding: 0.72vw 1.3vw 0.82vw;
+    color: rgba(255, 255, 255, 0.86);
+  }
+
+  .marcos-work__card--featured .marcos-work__cta {
+    grid-column: 2;
+  }
+
+  .marcos-work__card:hover,
+  .marcos-work__card:focus-visible,
+  .marcos-work__card.is-active {
+    transform: translate3d(0, -0.35vw, 0) scale(1.012);
+    box-shadow: inset 0 0 0 2px var(--red);
+  }
+
+  .marcos-work__card:hover .marcos-work__video,
+  .marcos-work__card:focus-visible .marcos-work__video,
+  .marcos-work__card.is-active .marcos-work__video {
+    opacity: 0.92;
+    filter: saturate(1) contrast(1.16) brightness(0.86);
+    transform: scale(1.05);
+  }
+
+  .marcos-work__card:hover .marcos-work__badge,
+  .marcos-work__card:focus-visible .marcos-work__badge,
+  .marcos-work__card:hover .marcos-work__cta,
+  .marcos-work__card:focus-visible .marcos-work__cta,
+  .marcos-work__card.is-active .marcos-work__badge,
+  .marcos-work__card.is-active .marcos-work__cta {
+    border-color: var(--red);
+    background: var(--red);
+    color: var(--white);
+  }
+
+  .marcos-work__stack.is-focusing .marcos-work__card:not(.is-active) {
+    opacity: 0.62;
+    filter: brightness(0.82);
+  }
+
+  .marcos-work [data-work-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 1.5vw, 0);
+    transition:
+      opacity 0.5s ease var(--work-delay, 0s),
+      transform 0.5s ease var(--work-delay, 0s);
+    will-change: transform, opacity;
+  }
+
+  .marcos-work.is-ready [data-work-reveal] {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .marcos-work__card:hover {
+      transform: none;
+    }
+
+    .marcos-work__card:hover .marcos-work__video {
+      transform: scale(1.01);
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .section--work {
+      padding: 72px 0 82px;
+    }
+
+    .marcos-work__container {
+      width: calc(100% - 30px);
+    }
+
+    .marcos-work__header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .marcos-work__label {
+      font-size: 12px;
+      line-height: 1.15;
+    }
+
+    .marcos-work__intro {
+      max-width: 320px;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    .marcos-work__stack {
+      gap: 10px;
+    }
+
+    .marcos-work__card,
+    .marcos-work__card--featured {
+      --work-card-h: 300px;
+      border-radius: 30px;
+    }
+
+    .marcos-work__inner,
+    .marcos-work__card--featured .marcos-work__inner {
+      min-height: var(--work-card-h);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .marcos-work__meta {
+      gap: 10px;
+    }
+
+    .marcos-work__badge,
+    .marcos-work__cta {
+      padding: 9px 14px 11px;
+      font-size: 12px;
+    }
+
+    .marcos-work__services {
+      max-width: 260px;
+      font-size: 12px;
+      line-height: 1.2;
+    }
+
+    .marcos-work__title,
+    .marcos-work__card--featured .marcos-work__title {
+      align-self: flex-end;
+      max-width: 100%;
+      font-size: clamp(46px, 15vw, 72px);
+      line-height: 0.78;
+      white-space: normal;
+      text-align: right;
+    }
+
+    .marcos-work__cta,
+    .marcos-work__card--featured .marcos-work__cta {
+      align-self: flex-start;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marcos-work__video {
+      transform: none;
+      transition: none;
+    }
+
+    .marcos-work__card,
+    .marcos-work [data-work-reveal] {
+      transform: none;
+      transition: none;
+    }
+
+    .marcos-work [data-work-reveal] {
+      opacity: 1;
+    }
+  }
+
+  .section--process {
+    position: relative;
+    overflow: hidden;
+    padding: 8.8vw 0 9.4vw;
+    background: var(--black);
+    color: var(--white);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .process__container {
+    position: relative;
+    width: calc(100% - 6.2vw);
+    margin: 0 auto;
+    z-index: 2;
+  }
+
+  .process__eyebrow {
+    display: inline-flex;
+    width: fit-content;
+    border: 1px solid var(--white);
+    border-radius: 100vw;
+    padding: 0.7vw 1.4vw;
+    margin-bottom: 2.1vw;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .process__stage {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2.4vw;
+    align-items: center;
+    min-height: 47vw;
+  }
+
+  .process__backdrop {
+    position: absolute;
+    inset: -4vw -3.1vw;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .process__ghost {
+    position: absolute;
+    width: 23vw;
+    height: 17vw;
+    border-radius: 2.1vw;
+    overflow: hidden;
+    opacity: 0.22;
+    filter: blur(18px) saturate(0.85) brightness(0.66);
+    transform: translate3d(0, 0, 0) scale(0.92);
+    transition:
+      opacity 0.7s ease-in-out,
+      transform 0.7s ease-in-out,
+      filter 0.7s ease-in-out;
+  }
+
+  .process__ghost img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .process__ghost:nth-child(1) {
+    top: 2vw;
+    left: -6vw;
+  }
+
+  .process__ghost:nth-child(2) {
+    top: 5vw;
+    right: -5vw;
+  }
+
+  .process__ghost:nth-child(3) {
+    bottom: 3vw;
+    left: 2vw;
+  }
+
+  .process__ghost:nth-child(4) {
+    bottom: 0;
+    right: 8vw;
+  }
+
+  .process__visual {
+    position: relative;
+    z-index: 2;
+    grid-column: 1 / span 8;
+  }
+
+  .process__frame {
+    position: relative;
+    height: 40.5vw;
+    min-height: 470px;
+    max-height: 640px;
+    overflow: hidden;
+    border-radius: 3.6vw;
+    border: 2px solid var(--red);
+    background: #070707;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .process__image {
+    width: calc(100% + 30px);
+    height: calc(100% + 30px);
+    margin: -15px;
+    object-fit: cover;
+    opacity: 0.92;
+    filter: saturate(0.9) contrast(1.08) brightness(0.74);
+    transform: translate3d(var(--process-parallax-x, 0px), var(--process-parallax-y, 0px), 0) scale(1.035);
+    transition:
+      opacity 0.55s ease-in-out,
+      filter 0.55s ease-in-out,
+      transform 0.18s ease-out;
+    will-change: transform;
+  }
+
+  .process__frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.66) 100%),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.08) 54%, rgba(0, 0, 0, 0.46) 100%);
+    pointer-events: none;
+  }
+
+  .process__title {
+    position: absolute;
+    left: 2.2vw;
+    bottom: 2vw;
+    z-index: 2;
+    margin: 0;
+    max-width: 78%;
+    font-size: clamp(72px, 9vw, 168px);
+    line-height: 0.74;
+    letter-spacing: -0.045em;
+    color: var(--white);
+  }
+
+  .process__title-line {
+    display: block;
+  }
+
+  .process__copy {
+    position: relative;
+    z-index: 2;
+    grid-column: 9 / span 4;
+    align-self: end;
+    padding: 0 0 2.2vw;
+  }
+
+  .process__count {
+    display: block;
+    color: var(--red);
+    letter-spacing: 0.12em;
+    margin-bottom: 1.1vw;
+  }
+
+  .process__description {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.64);
+    letter-spacing: -0.01em;
+  }
+
+  .process__controls {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55vw;
+    margin-top: 1.2vw;
+  }
+
+  .process__control {
+    appearance: none;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 100vw;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.70);
+    padding: 0.7vw 1.1vw 0.8vw;
+    cursor: pointer;
+    transition:
+      color 0.3s ease-in-out,
+      border-color 0.3s ease-in-out,
+      background-color 0.3s ease-in-out;
+  }
+
+  .process__control:hover,
+  .process__control:focus-visible,
+  .process__control.is-active {
+    color: var(--white);
+    border-color: var(--red);
+    background: var(--red);
+    outline: none;
+  }
+
+  .process__stage.is-changing .process__title {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translate3d(0, 1.5vw, 0);
+  }
+
+  .process__stage.is-changing .process__description,
+  .process__stage.is-changing .process__count {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translate3d(-1vw, 0, 0);
+  }
+
+  .process__title,
+  .process__description,
+  .process__count {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0);
+    transition:
+      opacity 0.7s cubic-bezier(0.8, 0, 0, 0.8),
+      filter 0.7s cubic-bezier(0.8, 0, 0, 0.8),
+      transform 0.7s cubic-bezier(0.8, 0, 0, 0.8);
+  }
+
+  .process__description {
+    transition-delay: 0.08s;
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .process__frame {
+      cursor: default;
+    }
+
+    .process__image {
+      transform: scale(1.035);
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .section--process {
+      padding: 78px 0 86px;
+    }
+
+    .process__container {
+      width: calc(100% - 30px);
+    }
+
+    .process__eyebrow {
+      padding: 9px 14px 11px;
+      margin-bottom: 22px;
+      font-size: 12px;
+    }
+
+    .process__stage {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 22px;
+      min-height: 0;
+    }
+
+    .process__backdrop {
+      inset: -20px -15px;
+      opacity: 0.72;
+    }
+
+    .process__ghost {
+      width: 150px;
+      height: 118px;
+      border-radius: 24px;
+      filter: blur(16px) saturate(0.8) brightness(0.56);
+    }
+
+    .process__ghost:nth-child(1) {
+      top: 130px;
+      left: -46px;
+    }
+
+    .process__ghost:nth-child(2) {
+      top: 28px;
+      right: -50px;
+    }
+
+    .process__ghost:nth-child(3),
+    .process__ghost:nth-child(4) {
+      display: none;
+    }
+
+    .process__visual,
+    .process__copy {
+      width: 100%;
+    }
+
+    .process__frame {
+      height: 382px;
+      min-height: 0;
+      max-height: none;
+      border-radius: 30px;
+    }
+
+    .process__title {
+      left: 18px;
+      bottom: 18px;
+      max-width: calc(100% - 36px);
+      font-size: clamp(50px, 15.8vw, 74px);
+      line-height: 0.76;
+    }
+
+    .process__copy {
+      padding: 0;
+    }
+
+    .process__count {
+      margin-bottom: 12px;
+      font-size: 12px;
+    }
+
+    .process__description {
+      font-size: 20px;
+      line-height: 1.22;
+    }
+
+    .process__controls {
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .process__control {
+      padding: 9px 12px 11px;
+      font-size: 12px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .process__image,
+    .process__ghost,
+    .process__title,
+    .process__description,
+    .process__count,
+    .process__control {
+      transition: none;
+      transform: none;
+      filter: none;
+    }
+
+    .process__stage.is-changing .process__title,
+    .process__stage.is-changing .process__description,
+    .process__stage.is-changing .process__count {
+      opacity: 1;
+      filter: none;
+      transform: none;
+    }
+  }
+
+  .section--process.process--slider {
+    padding: 5.2vw 0 6vw;
+    overflow: hidden;
+  }
+
+  .process--slider .process__container {
+    width: 100%;
+    margin: 0;
+  }
+
+  .process--slider .process__eyebrow {
+    margin-left: 3.1vw;
+    margin-bottom: 2.3vw;
+  }
+
+  .process-slider {
+    position: relative;
+    width: calc(100% - 0.7vw);
+    height: 55.5vw;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .process-slide {
+    position: absolute;
+    top: 0;
+    left: 100vw;
+    width: 65vw;
+    padding: 2vw 0;
+    cursor: pointer;
+    filter: blur(30px) brightness(0.5);
+    transition:
+      left 0.7s ease-in-out,
+      width 0.7s ease-in-out,
+      filter 0.7s ease-in-out,
+      transform 0.7s ease-in-out;
+  }
+
+  .process-slide:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: -3px;
+    border-radius: 2.1vw;
+  }
+
+  .process-slide__media {
+    width: 100%;
+    height: 34.4vw;
+    overflow: hidden;
+    border-radius: 2.1vw;
+    background: #101010;
+  }
+
+  .process-slide__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.01);
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .process-slide__info {
+    position: absolute;
+    left: 2.6vw;
+    top: 29.1vw;
+    width: calc(100vw - 5.6vw);
+    display: flex;
+    align-items: flex-start;
+    pointer-events: none;
+  }
+
+  .process-slide__title {
+    position: relative;
+    top: 1.8vw;
+    left: 0;
+    max-width: 58%;
+    margin: 0;
+    font-size: clamp(72px, 7.4vw, 142px);
+    line-height: 0.78;
+    letter-spacing: -0.055em;
+    color: var(--white);
+    opacity: 1;
+    transition: all 0.4s ease-in-out;
+  }
+
+  .process-slide__title span {
+    display: block;
+  }
+
+  .process-slide__text {
+    position: relative;
+    top: 8.9vw;
+    left: 1vw;
+    max-width: 32.2vw;
+    height: fit-content;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.86);
+    opacity: 0;
+    transition: all 0.4s ease-in-out;
+  }
+
+  .process-slide__count {
+    display: none;
+    color: var(--red);
+    letter-spacing: 0.12em;
+    margin-bottom: 0.9vw;
+  }
+
+  .process-slide.current {
+    left: 0;
+    z-index: 3;
+    filter: blur(0);
+    cursor: default;
+  }
+
+  .process-slide.current .process-slide__media img:hover {
+    transform: scale(1.1);
+  }
+
+  .process-slide.current .process-slide__info {
+    pointer-events: auto;
+  }
+
+  .process-slide.current .process-slide__text {
+    left: 2.1vw;
+    opacity: 1;
+  }
+
+  .process-slide.prev {
+    left: 0;
+    z-index: 1;
+    filter: blur(5px) brightness(0.1);
+    transform: scale(0.8);
+    transform-origin: 50% 50%;
+  }
+
+  .process-slide.prev .process-slide__title {
+    opacity: 0;
+  }
+
+  .process-slide.next {
+    width: 21vw;
+    left: calc(65vw + 1vw);
+    z-index: 2;
+    filter: blur(10px) brightness(0.7);
+  }
+
+  .process-slide.next-next {
+    width: 10vw;
+    left: calc(86vw + 2vw);
+    z-index: 1;
+    filter: blur(30px) brightness(0.5);
+  }
+
+  .process-slide.next .process-slide__info,
+  .process-slide.next-next .process-slide__info {
+    opacity: 0;
+  }
+
+  .process-slide__next {
+    display: none;
+  }
+
+  @media only screen and (max-width: 767px) {
+    .section--process.process--slider {
+      padding: 72px 0 82px;
+    }
+
+    .process--slider .process__eyebrow {
+      margin-left: 15px;
+      margin-bottom: 18px;
+    }
+
+    .process-slider {
+      width: calc(100% - 30px);
+      height: 700px;
+      overflow: visible;
+    }
+
+    .process-slide,
+    .process-slide.current {
+      left: 0;
+      width: 100%;
+      padding: 0;
+      filter: blur(0);
+      transform: none;
+      display: none;
+    }
+
+    .process-slide.current {
+      display: block;
+    }
+
+    .process-slide.next,
+    .process-slide.next-next,
+    .process-slide.prev {
+      display: none;
+    }
+
+    .process-slide__media {
+      height: 300px;
+      border-radius: 30px;
+    }
+
+    .process-slide__info {
+      position: relative;
+      left: 0;
+      top: auto;
+      width: 100%;
+      display: block;
+      margin-top: -58px;
+      pointer-events: auto;
+    }
+
+    .process-slide__title {
+      top: 0;
+      width: 100%;
+      max-width: 100%;
+      font-size: clamp(45px, 15.4vw, 64px);
+      line-height: 0.82;
+    }
+
+    .process-slide__text {
+      top: 0;
+      left: 0;
+      width: 100%;
+      max-width: 100%;
+      margin-top: 18px;
+      font-size: 18px;
+      line-height: 1.18;
+      opacity: 1;
+    }
+
+    .process-slide.current .process-slide__text {
+      left: 0;
+    }
+
+    .process-slide__count {
+      margin-bottom: 12px;
+      font-size: 12px;
+    }
+
+    .process-slide__next {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 94px;
+      height: 34px;
+      margin-top: 20px;
+      border: 1px solid var(--white);
+      border-radius: 100vw;
+      color: var(--white);
+      background: transparent;
+    }
+  }
+
+  .marcos-menu-toggle {
+    position: fixed;
+    top: 2.35vw;
+    right: 2.8vw;
+    z-index: 101;
+    width: 54px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .marcos-menu-toggle__line {
+    position: absolute;
+    right: 0;
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--white);
+    transition: top 0.3s ease-in-out, bottom 0.3s ease-in-out, width 0.3s ease-in-out, transform 0.3s ease-in-out, background 0.3s ease-in-out;
+  }
+
+  .marcos-menu-toggle__line:first-child {
+    top: 8px;
+  }
+
+  .marcos-menu-toggle__line:last-child {
+    bottom: 8px;
+  }
+
+  .marcos-menu-toggle:hover .marcos-menu-toggle__line:first-child,
+  .marcos-menu-toggle:focus-visible .marcos-menu-toggle__line:first-child {
+    width: 28px;
+  }
+
+  .marcos-menu-toggle:hover .marcos-menu-toggle__line:last-child,
+  .marcos-menu-toggle:focus-visible .marcos-menu-toggle__line:last-child {
+    width: 16px;
+  }
+
+  .marcos-menu-toggle.is-open .marcos-menu-toggle__line:first-child {
+    top: 16px;
+    width: 28px;
+    transform: rotate(45deg);
+  }
+
+  .marcos-menu-toggle.is-open .marcos-menu-toggle__line:last-child {
+    bottom: 16px;
+    width: 28px;
+    transform: rotate(-45deg);
+  }
+
+  .marcos-menu-toggle.is-open {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .marcos-menu-toggle:focus-visible,
+  .marcos-menu-overlay__close:focus-visible,
+  .marcos-menu-overlay__link:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 6px;
+  }
+
+  .marcos-menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    min-height: 100vh;
+    padding: 7vw 3.1vw 3vw;
+    overflow: hidden;
+    background: var(--black);
+    color: var(--white);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(0, -1.4vw, 0) scale(0.985);
+    transition: opacity 0.45s ease-in-out, transform 0.45s ease-in-out;
+  }
+
+  .marcos-menu-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  .marcos-menu-overlay__close {
+    position: absolute;
+    top: 2.2vw;
+    right: 2.9vw;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--white);
+    cursor: pointer;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+
+  .marcos-menu-overlay__close::before,
+  .marcos-menu-overlay__close::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background: currentColor;
+  }
+
+  .marcos-menu-overlay__close::before {
+    transform: rotate(45deg);
+  }
+
+  .marcos-menu-overlay__close::after {
+    transform: rotate(-45deg);
+  }
+
+  .marcos-menu-overlay__close:hover {
+    color: var(--red);
+    transform: rotate(90deg);
+  }
+
+  .marcos-menu-overlay__inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-start;
+    min-height: calc(100vh - 10vw);
+    padding-top: 0.5vw;
+  }
+
+  .marcos-menu-overlay__list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.05vw;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .marcos-menu-overlay__item {
+    overflow: hidden;
+  }
+
+  .marcos-menu-overlay__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    color: rgba(255, 255, 255, 0.30);
+    font-size: clamp(84px, 9.6vw, 184px);
+    line-height: 0.86;
+    letter-spacing: -0.055em;
+    text-decoration: none;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translate3d(0, 1.2vw, 0);
+    transition: opacity 0.45s ease-in-out, transform 0.45s ease-in-out, color 0.3s ease-in-out, gap 0.3s ease-in-out;
+    transition-delay: var(--menu-delay, 0s);
+  }
+
+  .marcos-menu-overlay.is-open .marcos-menu-overlay__link {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .marcos-menu-overlay__link::before {
+    display: none;
+  }
+
+  .marcos-menu-overlay__link:hover,
+  .marcos-menu-overlay__link:focus-visible,
+  .marcos-menu-overlay__link.is-active {
+    color: var(--white);
+    gap: 2.6vw;
+  }
+
+  .marcos-menu-overlay__text {
+    display: block;
+    border-bottom: 0.5vw solid transparent;
+    transition: border-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  .marcos-menu-overlay__link:hover .marcos-menu-overlay__text,
+  .marcos-menu-overlay__link:focus-visible .marcos-menu-overlay__text,
+  .marcos-menu-overlay__link.is-active .marcos-menu-overlay__text {
+    border-bottom-color: var(--white);
+  }
+
+  .marcos-menu-overlay__preview {
+    position: relative;
+    width: 0;
+    height: 10.4vw;
+    overflow: hidden;
+    flex: 0 0 auto;
+    border-radius: 0.15vw;
+    background: rgba(255, 255, 255, 0.06);
+    opacity: 0;
+    transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  .marcos-menu-overlay__link:hover .marcos-menu-overlay__preview,
+  .marcos-menu-overlay__link:focus-visible .marcos-menu-overlay__preview,
+  .marcos-menu-overlay__link.is-active .marcos-menu-overlay__preview {
+    width: 20.8vw;
+    opacity: 1;
+  }
+
+  .marcos-menu-overlay__preview::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.20));
+    pointer-events: none;
+  }
+
+  .marcos-menu-overlay__preview video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .marcos-menu-overlay__meta {
+    position: absolute;
+    right: 3.1vw;
+    bottom: 2.4vw;
+    color: rgba(255, 255, 255, 0.56);
+    letter-spacing: 0.12em;
+  }
+
+  body.marcos-menu-lock {
+    overflow: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marcos-menu-toggle__line,
+    .marcos-menu-overlay,
+    .marcos-menu-overlay__link,
+    .marcos-menu-overlay__link::before,
+    .marcos-menu-preview {
+      transition-duration: 0.01ms !important;
+      transition-delay: 0s !important;
+      transform: none !important;
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .marcos-menu-toggle {
+      top: 18px;
+      right: 15px;
+      width: 42px;
+      height: 28px;
+    }
+
+    .marcos-menu-toggle__line {
+      width: 28px;
+      height: 1px;
+    }
+
+    .marcos-menu-toggle__line:first-child {
+      top: 7px;
+    }
+
+    .marcos-menu-toggle__line:last-child {
+      bottom: 7px;
+    }
+
+    .marcos-menu-toggle.is-open .marcos-menu-toggle__line:first-child {
+      top: 13px;
+      width: 23px;
+    }
+
+    .marcos-menu-toggle.is-open .marcos-menu-toggle__line:last-child {
+      bottom: 14px;
+      width: 23px;
+    }
+
+    .marcos-menu-overlay {
+      padding: 76px 15px 28px;
+      overflow-y: auto;
+    }
+
+    .marcos-menu-overlay__close {
+      top: 14px;
+      right: 15px;
+      width: 40px;
+      height: 40px;
+    }
+
+    .marcos-menu-overlay__inner {
+      align-items: stretch;
+      justify-content: flex-end;
+      display: flex;
+      min-height: auto;
+      padding-top: 0;
+    }
+
+    .marcos-menu-overlay__list {
+      gap: 7px;
+    }
+
+    .marcos-menu-overlay__link {
+      font-size: clamp(42px, 14.2vw, 64px);
+      line-height: 0.9;
+      letter-spacing: -0.045em;
+      max-width: 100%;
+    }
+
+    .marcos-menu-overlay__link:hover,
+    .marcos-menu-overlay__link:focus-visible,
+    .marcos-menu-overlay__link.is-active {
+      gap: 12px;
+    }
+
+    .marcos-menu-overlay__text {
+      border-bottom-width: 4px;
+    }
+
+    .marcos-menu-overlay__preview {
+      height: 52px;
+      border-radius: 2px;
+    }
+
+    .marcos-menu-overlay__link:hover .marcos-menu-overlay__preview,
+    .marcos-menu-overlay__link:focus-visible .marcos-menu-overlay__preview,
+    .marcos-menu-overlay__link.is-active .marcos-menu-overlay__preview {
+      width: 96px;
+    }
+
+    .marcos-menu-overlay__meta {
+      position: static;
+      margin-top: 28px;
+      font-size: 11px;
+    }
+  }
+
+  .marcos-footer {
+    position: relative;
+    background: var(--black);
+    padding: 0 7px 7px;
+    color: var(--black);
+  }
+
+  .marcos-footer__card {
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: auto;
+    margin: 0;
+    border-radius: 2.6vw;
+    background: var(--white);
+    color: var(--black);
+    padding: 3.4vw 4.4vw 4vw;
+    min-height: 0;
+    box-shadow: 0 2vw 5vw rgba(0, 0, 0, 0.34);
+    opacity: 0;
+    transform: translate3d(0, 2vw, 0);
+    transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+  }
+
+  .marcos-footer__card.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .marcos-footer__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(250px, 0.55fr);
+    gap: 4vw;
+    align-items: start;
+  }
+
+  .marcos-footer__label,
+  .marcos-footer__eyebrow {
+    display: block;
+    margin: 0 0 0.8vw;
+    color: rgba(0, 0, 0, 0.48);
+    letter-spacing: 0.12em;
+  }
+
+  .marcos-footer__title {
+    max-width: 100%;
+    margin: 0;
+    font-size: clamp(52px, 4.7vw, 86px);
+    line-height: 0.86;
+    letter-spacing: -0.05em;
+    color: var(--black);
+    opacity: 0;
+    transform: translate3d(0, 1vw, 0);
+    transition: opacity 0.6s ease-in-out 0.12s, transform 0.6s ease-in-out 0.12s;
+  }
+
+  .marcos-footer__title span {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .marcos-footer__card.is-visible .marcos-footer__title {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .marcos-footer__summary {
+    max-width: 45vw;
+    margin: 1.2vw 0 0;
+    color: rgba(0, 0, 0, 0.68);
+    font-size: clamp(22px, 1.55vw, 30px);
+    line-height: 1.12;
+  }
+
+  .marcos-footer__cta.btn-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    margin: 1.5vw 0 0;
+    border-color: var(--red);
+    background: var(--red);
+    color: var(--white) !important;
+    line-height: 1;
+    text-decoration: none !important;
+    transition: transform 0.3s ease-in-out, background 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+
+  .marcos-footer__cta.btn-circle:hover,
+  .marcos-footer__cta.btn-circle:focus-visible {
+    transform: translate3d(0, -0.16vw, 0) scale(1.015);
+    border-color: var(--black);
+    background: var(--black);
+    color: var(--white) !important;
+  }
+
+  .marcos-footer__contact {
+    margin-top: 2.6vw;
+  }
+
+  .marcos-footer__email {
+    display: inline-block;
+    color: var(--black) !important;
+    text-decoration: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.12em;
+  }
+
+  .marcos-footer__email:hover,
+  .marcos-footer__email:focus-visible {
+    color: var(--red) !important;
+    text-decoration: none;
+  }
+
+  .marcos-footer__note {
+    max-width: 36vw;
+    margin: 0.8vw 0 0;
+    color: rgba(0, 0, 0, 0.52);
+  }
+
+  .marcos-footer__side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 4vw;
+    text-align: right;
+  }
+
+  .marcos-footer__social,
+  .marcos-footer__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .marcos-footer__social-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.55vw;
+  }
+
+  .marcos-footer__social-link {
+    color: var(--black) !important;
+    line-height: 0.9;
+    text-decoration: none !important;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+
+  .marcos-footer__social-link:hover,
+  .marcos-footer__social-link:focus-visible {
+    color: var(--red) !important;
+    transform: translate3d(-0.3vw, 0, 0);
+  }
+
+  .marcos-footer__nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.55vw;
+  }
+
+  .marcos-footer__pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--black);
+    border-radius: 100vw;
+    padding: 0.28vw 0.9vw 0.36vw;
+    color: var(--black) !important;
+    text-decoration: none !important;
+    transition: border-color 0.3s ease-in-out, background 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+
+  .marcos-footer__pill:hover,
+  .marcos-footer__pill:focus-visible {
+    border-color: var(--red);
+    background: var(--red);
+    color: var(--white) !important;
+  }
+
+  .marcos-footer__bottom {
+    position: absolute;
+    right: 4.4vw;
+    bottom: 1.8vw;
+    color: rgba(0, 0, 0, 0.34);
+    letter-spacing: 0.12em;
+  }
+
+  .marcos-footer a:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marcos-footer__card,
+    .marcos-footer__title,
+    .marcos-footer__cta.btn-circle,
+    .marcos-footer__social-link {
+      transition-duration: 0.01ms !important;
+      transform: none !important;
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .marcos-footer {
+      padding: 0 7px 7px;
+    }
+
+    .marcos-footer__card {
+      border-radius: 22px;
+      padding: 38px 18px 28px;
+      min-height: auto;
+    }
+
+    .marcos-footer__grid {
+      display: block;
+    }
+
+    .marcos-footer__label,
+    .marcos-footer__eyebrow {
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+
+    .marcos-footer__title {
+      max-width: 10.6ch;
+      font-size: clamp(42px, 13vw, 56px);
+      line-height: 0.88;
+    }
+
+    .marcos-footer__summary {
+      max-width: 100%;
+      margin-top: 18px;
+      font-size: 20px;
+      line-height: 1.15;
+    }
+
+    .marcos-footer__cta.btn-circle {
+      width: 100%;
+      margin-top: 24px;
+      padding: 14px 18px 16px;
+      font-size: 15px;
+    }
+
+    .marcos-footer__contact {
+      margin-top: 38px;
+    }
+
+    .marcos-footer__email {
+      font-size: clamp(24px, 7vw, 32px);
+      line-height: 1;
+      word-break: break-word;
+    }
+
+    .marcos-footer__note {
+      max-width: 100%;
+      margin-top: 12px;
+      font-size: 15px;
+    }
+
+    .marcos-footer__side {
+      align-items: flex-start;
+      gap: 30px;
+      margin-top: 40px;
+      text-align: left;
+    }
+
+    .marcos-footer__social,
+    .marcos-footer__nav,
+    .marcos-footer__social-list {
+      align-items: flex-start;
+    }
+
+    .marcos-footer__social-list {
+      gap: 9px;
+    }
+
+    .marcos-footer__social-link {
+      font-size: 24px;
+    }
+
+    .marcos-footer__nav-list {
+      justify-content: flex-start;
+      gap: 10px;
+    }
+
+    .marcos-footer__pill {
+      padding: 4px 18px 6px;
+      font-size: 15px;
+    }
+
+    .marcos-footer__bottom {
+      position: static;
+      margin-top: 34px;
+      font-size: 11px;
+    }
+  }
+</style>
+
+<button class="marcos-menu-toggle" type="button" aria-label="Abrir menu" aria-controls="marcos-menu-overlay" aria-expanded="false" data-menu-toggle>
+  <span class="marcos-menu-toggle__line" aria-hidden="true"></span>
+  <span class="marcos-menu-toggle__line" aria-hidden="true"></span>
+</button>
+
+<nav class="marcos-menu-overlay" id="marcos-menu-overlay" aria-label="Menu principal" aria-hidden="true" data-menu-overlay>
+  <button class="marcos-menu-overlay__close" type="button" aria-label="Fechar menu" data-menu-close></button>
+  <div class="marcos-menu-overlay__inner">
+    <ul class="marcos-menu-overlay__list">
+      <li class="marcos-menu-overlay__item">
+        <a class="marcos-menu-overlay__link font-black uppercase italic" href="#hero" data-menu-link style="--menu-delay: 0.05s;">
+          <span class="marcos-menu-overlay__preview" aria-hidden="true"><video muted loop playsinline preload="metadata" src="raw_files/Bold Kitchen.mp4"></video></span>
+          <span class="marcos-menu-overlay__text">INÍCIO</span>
+        </a>
+      </li>
+      <li class="marcos-menu-overlay__item">
+        <a class="marcos-menu-overlay__link font-black uppercase italic" href="#work" data-menu-link style="--menu-delay: 0.10s;">
+          <span class="marcos-menu-overlay__preview" aria-hidden="true"><video muted loop playsinline preload="metadata" src="raw_files/Car Runner.mp4"></video></span>
+          <span class="marcos-menu-overlay__text">TRABALHOS</span>
+        </a>
+      </li>
+      <li class="marcos-menu-overlay__item">
+        <a class="marcos-menu-overlay__link font-black uppercase italic" href="#process" data-menu-link style="--menu-delay: 0.15s;">
+          <span class="marcos-menu-overlay__preview" aria-hidden="true"><video muted loop playsinline preload="metadata" src="raw_files/Pixel Academy.mp4"></video></span>
+          <span class="marcos-menu-overlay__text">SOBRE</span>
+        </a>
+      </li>
+      <li class="marcos-menu-overlay__item">
+        <a class="marcos-menu-overlay__link font-black uppercase italic" href="#capabilities" data-menu-link style="--menu-delay: 0.20s;">
+          <span class="marcos-menu-overlay__preview" aria-hidden="true"><video muted loop playsinline preload="metadata" src="raw_files/Street Beat.mp4"></video></span>
+          <span class="marcos-menu-overlay__text">LAB</span>
+        </a>
+      </li>
+      <li class="marcos-menu-overlay__item">
+        <a class="marcos-menu-overlay__link font-black uppercase italic" href="https://www.instagram.com/" target="_blank" rel="noopener" data-menu-link style="--menu-delay: 0.25s;">
+          <span class="marcos-menu-overlay__preview" aria-hidden="true"><video muted loop playsinline preload="metadata" src="raw_files/Nimbus App.mp4"></video></span>
+          <span class="marcos-menu-overlay__text">INSTAGRAM</span>
+        </a>
+      </li>
+      <li class="marcos-menu-overlay__item">
+        <a class="marcos-menu-overlay__link font-black uppercase italic" href="https://www.behance.net/" target="_blank" rel="noopener" data-menu-link style="--menu-delay: 0.30s;">
+          <span class="marcos-menu-overlay__preview" aria-hidden="true"><video muted loop playsinline preload="metadata" src="raw_files/Nimbus App.mp4"></video></span>
+          <span class="marcos-menu-overlay__text">BEHANCE</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="marcos-menu-overlay__meta font-15 uppercase">Marcos Alencar · Premium Video Editor</div>
+</nav>
+
+<section id="hero" class="marcos-hero first-section relative" aria-labelledby="marcos-hero-title">
+  <div class="marcos-hero__background" aria-hidden="true">
+    <img class="marcos-hero__fallback" src="raw_files/hero-background-fallback.jpg" alt="" loading="eager" decoding="async" />
+    <video class="marcos-hero__video" autoplay muted loop playsinline preload="metadata" poster="raw_files/hero-background-fallback.jpg">
+      <source src="raw_files/hero-background.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <div class="marcos-hero__shade" aria-hidden="true"></div>
+  <div class="marcos-hero__spotlight" aria-hidden="true"></div>
+
+  <div class="marcos-hero__content">
+    <p class="marcos-hero__kicker font-18 uppercase" data-hero-reveal style="--hero-reveal-delay: 0s;">
+      Editor de vídeo para criadores e marcas digitais
+    </p>
+
+    <h1 id="marcos-hero-title" class="marcos-hero__title big-text font-150 uppercase italic font-black" data-hero-reveal style="--hero-reveal-delay: 0.08s;">
+      Vídeos que ninguém tem&nbsp;coragem de pular.
+    </h1>
+
+    <p class="marcos-hero__summary font-40" data-hero-reveal style="--hero-reveal-delay: 0.18s;">
+      Eu transformo gravações cruas em vídeos curtos com ritmo, narrativa e identidade visual, feitos para crescer audiência e faturamento — não só views vazias.
+    </p>
+
+    <div class="marcos-hero__actions" data-hero-reveal style="--hero-reveal-delay: 0.28s;">
+      <a class="marcos-hero__cta-primary btn-circle font-25 uppercase" href="#showreel" aria-label="Ver showreel de Marcos Alencar">
+        Ver showreel
+      </a>
+      <a class="marcos-hero__cta-secondary btn-circle font-25 uppercase" href="#contato" aria-label="Agendar uma chamada com Marcos Alencar">
+        Agendar uma chamada
+      </a>
+    </div>
+
+    <p class="marcos-hero__proof font-18" data-hero-reveal style="--hero-reveal-delay: 0.38s;">
+      +120M de visualizações geradas em YouTube, Instagram e TikTok para criadores e marcas que levam conteúdo a sério.
+    </p>
+  </div>
+
+  <a class="marcos-hero__scroll" href="#showreel" aria-label="Rolar para o showreel">
+    <svg viewBox="0 0 18 30" aria-hidden="true" focusable="false">
+      <path d="M2 15H16M10 7L16 15L10 23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </a>
+</section>
+
+<section id="capabilities" class="section section--capabilities capabilities" aria-label="Capabilities de Marcos Alencar">
+  <div class="capabilities__track capabilities__track--top" aria-hidden="false">
+    <p class="capabilities__rail font-black italic">
+      <span class="capabilities__line">
+        Edição de vídeo <span class="capabilities__sep">●</span> Storytelling <span class="capabilities__sep">●</span> Ritmo e timing <span class="capabilities__sep">●</span> Motion design <span class="capabilities__sep">●</span> Color grading <span class="capabilities__sep">●</span> Sound design <span class="capabilities__sep">●</span> Reels, Shorts e TikTok <span class="capabilities__sep">●</span> Conteúdo para lançamentos <span class="capabilities__sep">●</span> Vídeos para anúncios <span class="capabilities__sep">●</span> Conteúdo diário de marcas
+      </span>
+      <span class="capabilities__line" aria-hidden="true">
+        Edição de vídeo <span class="capabilities__sep">●</span> Storytelling <span class="capabilities__sep">●</span> Ritmo e timing <span class="capabilities__sep">●</span> Motion design <span class="capabilities__sep">●</span> Color grading <span class="capabilities__sep">●</span> Sound design <span class="capabilities__sep">●</span> Reels, Shorts e TikTok <span class="capabilities__sep">●</span> Conteúdo para lançamentos <span class="capabilities__sep">●</span> Vídeos para anúncios <span class="capabilities__sep">●</span> Conteúdo diário de marcas
+      </span>
+    </p>
+  </div>
+
+  <div class="capabilities__track capabilities__track--bottom" aria-hidden="false">
+    <p class="capabilities__rail font-black italic">
+      <span class="capabilities__line">
+        Estrategia de conteúdo <span class="capabilities__sep">●</span> Adaptar long-form em short-form <span class="capabilities__sep">●</span> Otimização para retenção <span class="capabilities__sep">●</span> Criação de hooks <span class="capabilities__sep">●</span> Edição para criadores <span class="capabilities__sep">●</span> Edição para infoprodutores <span class="capabilities__sep">●</span> Edição para marcas digitais <span class="capabilities__sep">●</span> Conteúdo que vende e engaja
+      </span>
+      <span class="capabilities__line" aria-hidden="true">
+        Estrategia de conteúdo <span class="capabilities__sep">●</span> Adaptar long-form em short-form <span class="capabilities__sep">●</span> Otimização para retenção <span class="capabilities__sep">●</span> Criação de hooks <span class="capabilities__sep">●</span> Edição para criadores <span class="capabilities__sep">●</span> Edição para infoprodutores <span class="capabilities__sep">●</span> Edição para marcas digitais <span class="capabilities__sep">●</span> Conteúdo que vende e engaja
+      </span>
+    </p>
+  </div>
+</section>
+
+<section id="work" class="section section--work marcos-work" aria-labelledby="marcos-work-title">
+  <div class="marcos-work__container">
+    <div class="marcos-work__header" data-work-reveal>
+      <h2 id="marcos-work-title" class="marcos-work__label font-18 uppercase">
+        Selected projects
+      </h2>
+      <p class="marcos-work__intro font-25">
+        Alguns dos trabalhos que editei para criadores e marcas em nichos diferentes.
+      </p>
+    </div>
+
+    <div class="marcos-work__stack" aria-label="Projetos selecionados de Marcos Alencar">
+      <a class="marcos-work__card marcos-work__card--featured" href="#" aria-label="Ver projeto CAR RUNNER" data-work-reveal style="--work-delay: 0.05s;">
+        <div class="marcos-work__media" aria-hidden="true">
+          <video class="marcos-work__video" autoplay muted loop playsinline preload="metadata">
+            <source src="raw_files/Car Runner.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="marcos-work__overlay" aria-hidden="true"></div>
+        <div class="marcos-work__inner">
+          <div class="marcos-work__meta">
+            <span class="marcos-work__badge font-15 uppercase">Selected case</span>
+            <span class="marcos-work__services font-15 uppercase">Automotive · Storytelling · Short-form Editing</span>
+          </div>
+          <h3 class="marcos-work__title font-black uppercase italic">CAR RUNNER</h3>
+          <span class="marcos-work__cta font-15 uppercase">Ver projeto</span>
+        </div>
+      </a>
+
+      <a class="marcos-work__card" href="#" aria-label="Ver projeto BOLD KITCHEN" data-work-reveal style="--work-delay: 0.10s;">
+        <div class="marcos-work__media" aria-hidden="true">
+          <video class="marcos-work__video" autoplay muted loop playsinline preload="metadata">
+            <source src="raw_files/Bold Kitchen.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="marcos-work__overlay" aria-hidden="true"></div>
+        <div class="marcos-work__inner">
+          <div class="marcos-work__meta">
+            <span class="marcos-work__badge font-15 uppercase">Selected case</span>
+            <span class="marcos-work__services font-15 uppercase">Food · Social Media · Product Video</span>
+          </div>
+          <h3 class="marcos-work__title font-black uppercase italic">BOLD KITCHEN</h3>
+          <span class="marcos-work__cta font-15 uppercase">Ver projeto</span>
+        </div>
+      </a>
+
+      <a class="marcos-work__card" href="#" aria-label="Ver projeto PIXEL ACADEMY" data-work-reveal style="--work-delay: 0.15s;">
+        <div class="marcos-work__media" aria-hidden="true">
+          <video class="marcos-work__video" autoplay muted loop playsinline preload="metadata">
+            <source src="raw_files/Pixel Academy.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="marcos-work__overlay" aria-hidden="true"></div>
+        <div class="marcos-work__inner">
+          <div class="marcos-work__meta">
+            <span class="marcos-work__badge font-15 uppercase">Selected case</span>
+            <span class="marcos-work__services font-15 uppercase">Online Course · YouTube Content · Motion Graphics</span>
+          </div>
+          <h3 class="marcos-work__title font-black uppercase italic">PIXEL ACADEMY</h3>
+          <span class="marcos-work__cta font-15 uppercase">Ver projeto</span>
+        </div>
+      </a>
+
+      <a class="marcos-work__card" href="#" aria-label="Ver projeto NIMBUS APP" data-work-reveal style="--work-delay: 0.20s;">
+        <div class="marcos-work__media" aria-hidden="true">
+          <video class="marcos-work__video" autoplay muted loop playsinline preload="metadata">
+            <source src="raw_files/Nimbus App.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="marcos-work__overlay" aria-hidden="true"></div>
+        <div class="marcos-work__inner">
+          <div class="marcos-work__meta">
+            <span class="marcos-work__badge font-15 uppercase">Selected case</span>
+            <span class="marcos-work__services font-15 uppercase">SaaS · App Explainer · Screen Compositing</span>
+          </div>
+          <h3 class="marcos-work__title font-black uppercase italic">NIMBUS APP</h3>
+          <span class="marcos-work__cta font-15 uppercase">Ver projeto</span>
+        </div>
+      </a>
+
+      <a class="marcos-work__card" href="#" aria-label="Ver projeto STREET BEAT" data-work-reveal style="--work-delay: 0.25s;">
+        <div class="marcos-work__media" aria-hidden="true">
+          <video class="marcos-work__video" autoplay muted loop playsinline preload="metadata">
+            <source src="raw_files/Street Beat.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="marcos-work__overlay" aria-hidden="true"></div>
+        <div class="marcos-work__inner">
+          <div class="marcos-work__meta">
+            <span class="marcos-work__badge font-15 uppercase">Selected case</span>
+            <span class="marcos-work__services font-15 uppercase">Creator · Lifestyle · Music Vlogs</span>
+          </div>
+          <h3 class="marcos-work__title font-black uppercase italic">STREET BEAT</h3>
+          <span class="marcos-work__cta font-15 uppercase">Ver projeto</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="process" class="section section--process process process--slider" aria-labelledby="process-title">
+  <div class="process__container">
+    <div class="process__eyebrow font-15 uppercase">Built on process. Driven by editing.</div>
+
+    <div class="process-slider" data-process-slider>
+      <article class="process-slide current" data-process-slide>
+        <div class="process-slide__media">
+          <img src="raw_files/Hook & Story.jpeg" alt="Imagem abstrata 3D representando Hook & Story" loading="eager" decoding="async" />
+        </div>
+        <div class="process-slide__info active">
+          <h2 id="process-title" class="process-slide__title font-black uppercase italic">
+            <span>HOOK &amp;</span>
+            <span>STORY</span>
+          </h2>
+          <div class="process-slide__text font-25">
+            <span class="process-slide__count font-15 uppercase">01 / 05</span>
+            Antes de abrir a timeline, eu entendo a ideia central, o público e o objetivo do vídeo. A partir disso, defino o hook de abertura, a ordem dos momentos chave e o tom da narrativa para segurar a atenção do primeiro ao último segundo.
+            <button class="process-slide__next font-15 uppercase" type="button" aria-label="Próxima etapa">Next</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="process-slide next" data-process-slide>
+        <div class="process-slide__media">
+          <img src="raw_files/Footage & Assets.jpeg" alt="Imagem abstrata 3D representando Footage & Assets" loading="lazy" decoding="async" />
+        </div>
+        <div class="process-slide__info">
+          <h2 class="process-slide__title font-black uppercase italic">
+            <span>FOOTAGE &amp;</span>
+            <span>ASSETS</span>
+          </h2>
+          <div class="process-slide__text font-25">
+            <span class="process-slide__count font-15 uppercase">02 / 05</span>
+            Organizo tudo o que você tem: gravações, telas, prints, B-roll, UGC e áudios. Limpo, separo por momentos e já começo a imaginar quais takes conversam melhor entre si para contar a história com o máximo de impacto.
+            <button class="process-slide__next font-15 uppercase" type="button" aria-label="Próxima etapa">Next</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="process-slide next-next" data-process-slide>
+        <div class="process-slide__media">
+          <img src="raw_files/Edit & Rhythm.jpeg" alt="Imagem abstrata 3D representando Edit & Rhythm" loading="lazy" decoding="async" />
+        </div>
+        <div class="process-slide__info">
+          <h2 class="process-slide__title font-black uppercase italic">
+            <span>EDIT &amp;</span>
+            <span>RHYTHM</span>
+          </h2>
+          <div class="process-slide__text font-25">
+            <span class="process-slide__count font-15 uppercase">03 / 05</span>
+            É aqui que o vídeo ganha vida. Ajusto cortes, respiros, pacing e transições pensando em retenção, clareza e emoção. Cada beat, olhar e corte é encaixado para fazer o público esquecer do botão de pular.
+            <button class="process-slide__next font-15 uppercase" type="button" aria-label="Próxima etapa">Next</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="process-slide" data-process-slide>
+        <div class="process-slide__media">
+          <img src="raw_files/Motion & Detail.jpeg" alt="Imagem abstrata 3D representando Motion & Detail" loading="lazy" decoding="async" />
+        </div>
+        <div class="process-slide__info">
+          <h2 class="process-slide__title font-black uppercase italic">
+            <span>MOTION &amp;</span>
+            <span>DETAIL</span>
+          </h2>
+          <div class="process-slide__text font-25">
+            <span class="process-slide__count font-15 uppercase">04 / 05</span>
+            Depois do corte bruto, entro nos detalhes que fazem diferença: motion graphics, highlights, callouts, legendas dinâmicas, ajustes finos de cor e textura. É o polimento que dá identidade e faz o vídeo parecer “caro”.
+            <button class="process-slide__next font-15 uppercase" type="button" aria-label="Próxima etapa">Next</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="process-slide prev" data-process-slide>
+        <div class="process-slide__media">
+          <img src="raw_files/Launch & Growth.jpeg" alt="Imagem abstrata 3D representando Launch & Growth" loading="lazy" decoding="async" />
+        </div>
+        <div class="process-slide__info">
+          <h2 class="process-slide__title font-black uppercase italic">
+            <span>LAUNCH &amp;</span>
+            <span>GROWTH</span>
+          </h2>
+          <div class="process-slide__text font-25">
+            <span class="process-slide__count font-15 uppercase">05 / 05</span>
+            Entrego versões prontas para publicar em cada plataforma, com formatos e proporções otimizados. A partir dos resultados, ajusto o que for preciso para próximos vídeos performarem ainda melhor.
+            <button class="process-slide__next font-15 uppercase" type="button" aria-label="Próxima etapa">Next</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="marcos-footer" id="footer" aria-labelledby="marcos-footer-title">
+  <div class="marcos-footer__card footer-white" data-footer-reveal>
+    <div class="marcos-footer__grid">
+      <div class="marcos-footer__main">
+        <span class="marcos-footer__label font-15 uppercase">Próximo passo</span>
+        <h2 class="marcos-footer__title font-black uppercase italic" id="marcos-footer-title">
+          <span>Próximo vídeo →</span>
+          <span>Melhor performance</span>
+        </h2>
+        <p class="marcos-footer__summary font-25">
+          Projetos, lançamentos e conteúdo diário para criadores e marcas que querem levar a edição a sério.
+        </p>
+        <a class="marcos-footer__cta btn-circle font-25 uppercase" href="mailto:contato@marcosalencar.video">
+          Quero editar com o Marcos
+        </a>
+
+        <div class="marcos-footer__contact">
+          <span class="marcos-footer__eyebrow font-15 uppercase">E-mail</span>
+          <a class="marcos-footer__email font-50" href="mailto:contato@marcosalencar.video">contato@marcosalencar.video</a>
+          <p class="marcos-footer__note font-18">Respondo em até 1 dia útil com próximos passos e orçamento.</p>
+        </div>
+      </div>
+
+      <div class="marcos-footer__side" aria-label="Links do rodapé">
+        <div class="marcos-footer__social">
+          <span class="marcos-footer__eyebrow font-15 uppercase">Redes</span>
+          <div class="marcos-footer__social-list font-40 uppercase">
+            <a class="marcos-footer__social-link" href="https://www.instagram.com/" target="_blank" rel="noopener">INSTAGRAM</a>
+            <a class="marcos-footer__social-link" href="https://www.youtube.com/" target="_blank" rel="noopener">YOUTUBE</a>
+            <a class="marcos-footer__social-link" href="https://www.tiktok.com/" target="_blank" rel="noopener">TIKTOK</a>
+            <a class="marcos-footer__social-link" href="https://www.behance.net/" target="_blank" rel="noopener">BEHANCE</a>
+          </div>
+        </div>
+
+        <nav class="marcos-footer__nav" aria-label="Navegação final">
+          <span class="marcos-footer__eyebrow font-15 uppercase">Navegação</span>
+          <div class="marcos-footer__nav-list">
+            <a class="marcos-footer__pill font-15 uppercase" href="#sobre">SOBRE</a>
+            <a class="marcos-footer__pill font-15 uppercase" href="#trabalhos">TRABALHOS</a>
+            <a class="marcos-footer__pill font-15 uppercase" href="#lab">LAB</a>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <div class="marcos-footer__bottom font-15 uppercase">Marcos Alencar · Video editor · 2026</div>
+  </div>
+</footer>
+
+<script>
+  (() => {
+    const hero = document.querySelector(".marcos-hero");
+    if (!hero) return;
+
+    const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const touchQuery = window.matchMedia("(hover: none), (pointer: coarse)");
+    const canUseSpotlight = () => !reduceMotionQuery.matches && !touchQuery.matches;
+
+    let targetX = 68;
+    let targetY = 42;
+    let currentX = targetX;
+    let currentY = targetY;
+    let rafId = null;
+
+    const setSpotlight = () => {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+      hero.style.setProperty("--hero-spotlight-x", `${currentX}%`);
+      hero.style.setProperty("--hero-spotlight-y", `${currentY}%`);
+      rafId = requestAnimationFrame(setSpotlight);
+    };
+
+    const handlePointerMove = (event) => {
+      if (!canUseSpotlight()) return;
+      const rect = hero.getBoundingClientRect();
+      targetX = ((event.clientX - rect.left) / rect.width) * 100;
+      targetY = ((event.clientY - rect.top) / rect.height) * 100;
+    };
+
+    const syncMotionMode = () => {
+      hero.classList.toggle("is-reduced-motion", reduceMotionQuery.matches);
+
+      if (canUseSpotlight() && !rafId) {
+        rafId = requestAnimationFrame(setSpotlight);
+      }
+
+      if (!canUseSpotlight() && rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+    };
+
+    hero.addEventListener("pointermove", handlePointerMove, { passive: true });
+    reduceMotionQuery.addEventListener("change", syncMotionMode);
+    touchQuery.addEventListener("change", syncMotionMode);
+
+    requestAnimationFrame(() => {
+      hero.classList.add("is-ready");
+      syncMotionMode();
+    });
+  })();
+
+  (() => {
+    const work = document.querySelector(".marcos-work");
+    if (!work) return;
+
+    const stack = work.querySelector(".marcos-work__stack");
+    const cards = Array.from(work.querySelectorAll(".marcos-work__card"));
+    const videos = Array.from(work.querySelectorAll(".marcos-work__video"));
+    const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const setActiveCard = (card) => {
+      stack.classList.add("is-focusing");
+      cards.forEach((item) => item.classList.toggle("is-active", item === card));
+    };
+
+    const clearActiveCard = () => {
+      stack.classList.remove("is-focusing");
+      cards.forEach((item) => item.classList.remove("is-active"));
+    };
+
+    const syncVideoMotion = () => {
+      videos.forEach((video) => {
+        if (reduceMotionQuery.matches) {
+          video.pause();
+          video.removeAttribute("autoplay");
+          return;
+        }
+
+        video.setAttribute("autoplay", "");
+        const playAttempt = video.play();
+        if (playAttempt && typeof playAttempt.catch === "function") {
+          playAttempt.catch(() => {});
+        }
+      });
+    };
+
+    cards.forEach((card) => {
+      card.addEventListener("mouseenter", () => setActiveCard(card));
+      card.addEventListener("focus", () => setActiveCard(card));
+      card.addEventListener("mouseleave", clearActiveCard);
+      card.addEventListener("blur", clearActiveCard);
+    });
+
+    reduceMotionQuery.addEventListener("change", syncVideoMotion);
+
+    const revealWork = () => work.classList.add("is-ready");
+
+    if (reduceMotionQuery.matches || !("IntersectionObserver" in window)) {
+      revealWork();
+    } else {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          revealWork();
+          observer.disconnect();
+        });
+      }, { threshold: 0.18 });
+
+      observer.observe(work);
+    }
+
+    requestAnimationFrame(syncVideoMotion);
+  })();
+
+  (() => {
+    const process = document.querySelector(".process");
+    if (!process) return;
+
+    const steps = [
+      {
+        key: "hook-and-story",
+        titleLine1: "HOOK &",
+        titleLine2: "STORY",
+        description: "Antes de abrir a timeline, eu entendo a ideia central, o público e o objetivo do vídeo. A partir disso, defino o hook de abertura, a ordem dos momentos chave e o tom da narrativa para segurar a atenção do primeiro ao último segundo.",
+        imageSrc: "raw_files/Hook & Story.jpeg",
+        alt: "Imagem abstrata 3D representando Hook & Story"
+      },
+      {
+        key: "footage-and-assets",
+        titleLine1: "FOOTAGE &",
+        titleLine2: "ASSETS",
+        description: "Organizo tudo o que você tem: gravações, telas, prints, B‑roll, UGC e áudios. Limpo, separo por momentos e já começo a imaginar quais takes conversam melhor entre si para contar a história com o máximo de impacto.",
+        imageSrc: "raw_files/Footage & Assets.jpeg",
+        alt: "Imagem abstrata 3D representando Footage & Assets"
+      },
+      {
+        key: "edit-and-rhythm",
+        titleLine1: "EDIT &",
+        titleLine2: "RHYTHM",
+        description: "É aqui que o vídeo ganha vida. Ajusto cortes, respiros, pacing e transições pensando em retenção, clareza e emoção. Cada beat, olhar e corte é encaixado para fazer o público esquecer do botão de pular.",
+        imageSrc: "raw_files/Edit & Rhythm.jpeg",
+        alt: "Imagem abstrata 3D representando Edit & Rhythm"
+      },
+      {
+        key: "motion-and-detail",
+        titleLine1: "MOTION &",
+        titleLine2: "DETAIL",
+        description: "Depois do corte bruto, entro nos detalhes que fazem diferença: motion graphics, highlights, callouts, legendas dinâmicas, ajustes finos de cor e textura. É o polimento que dá identidade e faz o vídeo parecer “caro”.",
+        imageSrc: "raw_files/Motion & Detail.jpeg",
+        alt: "Imagem abstrata 3D representando Motion & Detail"
+      },
+      {
+        key: "launch-and-growth",
+        titleLine1: "LAUNCH &",
+        titleLine2: "GROWTH",
+        description: "Entrego versões prontas para publicar em cada plataforma, com formatos e proporções otimizados. A partir dos resultados, ajusto o que for preciso para próximos vídeos performarem ainda melhor.",
+        imageSrc: "raw_files/Launch & Growth.jpeg",
+        alt: "Imagem abstrata 3D representando Launch & Growth"
+      }
+    ];
+
+    const stage = process.querySelector("[data-process-stage]");
+    if (!stage) return;
+    const image = process.querySelector("[data-process-image]");
+    const titleLine1 = process.querySelector("[data-process-title-line-1]");
+    const titleLine2 = process.querySelector("[data-process-title-line-2]");
+    const description = process.querySelector("[data-process-description]");
+    const count = process.querySelector("[data-process-count]");
+    const controls = process.querySelector("[data-process-controls]");
+    const backdrop = process.querySelector("[data-process-backdrop]");
+    const nextButton = process.querySelector("[data-process-next]");
+    const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const touchQuery = window.matchMedia("(hover: none), (pointer: coarse)");
+
+    let activeIndex = 0;
+    let changeTimer = null;
+    let rafId = null;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    const renderBackdrop = () => {
+      backdrop.innerHTML = "";
+      steps.forEach((step, index) => {
+        if (index === activeIndex) return;
+        const ghost = document.createElement("div");
+        ghost.className = "process__ghost";
+        const ghostImage = document.createElement("img");
+        ghostImage.src = step.imageSrc;
+        ghostImage.alt = "";
+        ghostImage.loading = "lazy";
+        ghostImage.decoding = "async";
+        ghost.appendChild(ghostImage);
+        backdrop.appendChild(ghost);
+      });
+    };
+
+    const renderControls = () => {
+      controls.innerHTML = "";
+      steps.forEach((step, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "process__control font-15 uppercase";
+        button.textContent = String(index + 1).padStart(2, "0");
+        button.setAttribute("aria-label", `Ver etapa ${index + 1}: ${step.titleLine1} ${step.titleLine2}`);
+        button.addEventListener("click", () => setActiveStep(index));
+        controls.appendChild(button);
+      });
+    };
+
+    const updateControls = () => {
+      Array.from(controls.children).forEach((button, index) => {
+        const isActive = index === activeIndex;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+    };
+
+    const applyStepContent = () => {
+      const step = steps[activeIndex];
+      image.src = step.imageSrc;
+      image.alt = step.alt;
+      titleLine1.textContent = step.titleLine1;
+      titleLine2.textContent = step.titleLine2;
+      description.textContent = step.description;
+      count.textContent = `${String(activeIndex + 1).padStart(2, "0")} / ${String(steps.length).padStart(2, "0")}`;
+      nextButton.setAttribute("aria-label", `Avançar para a próxima etapa depois de ${step.titleLine1} ${step.titleLine2}`);
+      renderBackdrop();
+      updateControls();
+    };
+
+    const setActiveStep = (index) => {
+      if (index === activeIndex) return;
+      activeIndex = (index + steps.length) % steps.length;
+
+      window.clearTimeout(changeTimer);
+      if (reduceMotionQuery.matches) {
+        applyStepContent();
+        return;
+      }
+
+      stage.classList.add("is-changing");
+      changeTimer = window.setTimeout(() => {
+        applyStepContent();
+        requestAnimationFrame(() => stage.classList.remove("is-changing"));
+      }, 260);
+    };
+
+    const resetParallax = () => {
+      targetX = 0;
+      targetY = 0;
+    };
+
+    const canUseParallax = () => !reduceMotionQuery.matches && !touchQuery.matches;
+
+    const animateParallax = () => {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+      image.style.setProperty("--process-parallax-x", `${currentX}px`);
+      image.style.setProperty("--process-parallax-y", `${currentY}px`);
+      rafId = requestAnimationFrame(animateParallax);
+    };
+
+    const syncParallax = () => {
+      if (canUseParallax() && !rafId) {
+        rafId = requestAnimationFrame(animateParallax);
+      }
+
+      if (!canUseParallax() && rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+        image.style.setProperty("--process-parallax-x", "0px");
+        image.style.setProperty("--process-parallax-y", "0px");
+      }
+    };
+
+    nextButton.addEventListener("click", () => setActiveStep(activeIndex + 1));
+    nextButton.addEventListener("mousemove", (event) => {
+      if (!canUseParallax()) return;
+      const rect = nextButton.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      targetX = x * -24;
+      targetY = y * -24;
+    });
+    nextButton.addEventListener("mouseleave", resetParallax);
+    reduceMotionQuery.addEventListener("change", syncParallax);
+    touchQuery.addEventListener("change", syncParallax);
+
+    renderControls();
+    applyStepContent();
+    syncParallax();
+  })();
+
+  (() => {
+    const slider = document.querySelector("[data-process-slider]");
+    if (!slider) return;
+
+    const slides = Array.from(slider.querySelectorAll("[data-process-slide]"));
+    const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    let currentIndex = Math.max(0, slides.findIndex((slide) => slide.classList.contains("current")));
+    let isAnimating = false;
+    let unlockTimer = null;
+    let touchStartX = 0;
+
+    const setSlideA11y = (slide, index, isCurrent) => {
+      slide.tabIndex = 0;
+      slide.setAttribute("role", "button");
+      slide.setAttribute("aria-label", `${isCurrent ? "Avançar etapa atual" : "Ver etapa"} ${index + 1} do processo`);
+      slide.setAttribute("aria-current", isCurrent ? "step" : "false");
+    };
+
+    const updateSlides = () => {
+      const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+      const nextIndex = (currentIndex + 1) % slides.length;
+      const nextNextIndex = (currentIndex + 2) % slides.length;
+
+      slides.forEach((slide, index) => {
+        const isCurrent = index === currentIndex;
+        slide.classList.remove("current", "prev", "next", "next-next");
+
+        if (isCurrent) slide.classList.add("current");
+        if (index === prevIndex) slide.classList.add("prev");
+        if (index === nextIndex) slide.classList.add("next");
+        if (index === nextNextIndex) slide.classList.add("next-next");
+
+        const info = slide.querySelector(".process-slide__info");
+        if (info) info.classList.toggle("active", isCurrent);
+        setSlideA11y(slide, index, isCurrent);
+      });
+    };
+
+    const goTo = (index) => {
+      if (isAnimating || index === currentIndex) return;
+      currentIndex = (index + slides.length) % slides.length;
+      isAnimating = !reduceMotionQuery.matches;
+      updateSlides();
+
+      window.clearTimeout(unlockTimer);
+      unlockTimer = window.setTimeout(() => {
+        isAnimating = false;
+      }, reduceMotionQuery.matches ? 0 : 720);
+    };
+
+    const goNext = () => goTo(currentIndex + 1);
+
+    slides.forEach((slide, index) => {
+      slide.addEventListener("click", (event) => {
+        if (event.target.closest(".process-slide__next")) {
+          goNext();
+          return;
+        }
+
+        slide.classList.contains("current") ? goNext() : goTo(index);
+      });
+
+      slide.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        slide.classList.contains("current") ? goNext() : goTo(index);
+      });
+    });
+
+    slider.querySelectorAll(".process-slide__next").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        goNext();
+      });
+    });
+
+    slider.addEventListener("touchstart", (event) => {
+      touchStartX = event.changedTouches[0].screenX;
+    }, { passive: true });
+
+    slider.addEventListener("touchend", (event) => {
+      const touchEndX = event.changedTouches[0].screenX;
+      if (touchEndX < touchStartX - 24) goNext();
+      if (touchEndX > touchStartX + 24) goTo(currentIndex - 1);
+    }, { passive: true });
+
+    reduceMotionQuery.addEventListener("change", updateSlides);
+    updateSlides();
+  })();
+
+  (() => {
+    const toggle = document.querySelector("[data-menu-toggle]");
+    const overlay = document.querySelector("[data-menu-overlay]");
+    if (!toggle || !overlay) return;
+
+    const closeButton = overlay.querySelector("[data-menu-close]");
+    const links = Array.from(overlay.querySelectorAll("[data-menu-link]"));
+    const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    let lastFocusedElement = null;
+
+    const focusableSelector = "a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex='-1'])";
+
+    const setActiveLink = (link) => {
+      links.forEach((item) => item.classList.toggle("is-active", item === link));
+      links.forEach((item) => {
+        const video = item.querySelector("video");
+        if (!video) return;
+
+        if (item === link && !reduceMotionQuery.matches) {
+          video.play().catch(() => {});
+          return;
+        }
+
+        video.pause();
+        video.currentTime = 0;
+      });
+    };
+
+    const openMenu = () => {
+      lastFocusedElement = document.activeElement;
+      overlay.classList.add("is-open");
+      toggle.classList.add("is-open");
+      document.body.classList.add("marcos-menu-lock");
+      overlay.setAttribute("aria-hidden", "false");
+      toggle.setAttribute("aria-expanded", "true");
+      toggle.setAttribute("aria-label", "Fechar menu");
+      setActiveLink(links[0]);
+
+      window.setTimeout(() => {
+        closeButton?.focus({ preventScroll: true });
+      }, reduceMotionQuery.matches ? 0 : 180);
+    };
+
+    const closeMenu = ({ returnFocus = true } = {}) => {
+      overlay.classList.remove("is-open");
+      toggle.classList.remove("is-open");
+      document.body.classList.remove("marcos-menu-lock");
+      overlay.setAttribute("aria-hidden", "true");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Abrir menu");
+
+      if (returnFocus && lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+        lastFocusedElement.focus({ preventScroll: true });
+      }
+    };
+
+    const isOpen = () => overlay.classList.contains("is-open");
+
+    toggle.addEventListener("click", () => {
+      isOpen() ? closeMenu() : openMenu();
+    });
+
+    closeButton?.addEventListener("click", () => closeMenu());
+
+    links.forEach((link) => {
+      link.addEventListener("mouseenter", () => setActiveLink(link));
+      link.addEventListener("focus", () => setActiveLink(link));
+      link.addEventListener("click", () => closeMenu({ returnFocus: false }));
+    });
+
+    overlay.addEventListener("pointerdown", (event) => {
+      if (event.target === overlay) closeMenu();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (!isOpen()) return;
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeMenu();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusable = Array.from(overlay.querySelectorAll(focusableSelector))
+        .filter((element) => element.offsetParent !== null || element === closeButton);
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      }
+
+      if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+  })();
+
+  (() => {
+    const footerCard = document.querySelector("[data-footer-reveal]");
+    if (!footerCard) return;
+
+    const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reduceMotionQuery.matches || !("IntersectionObserver" in window)) {
+      footerCard.classList.add("is-visible");
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        footerCard.classList.add("is-visible");
+        observer.disconnect();
+      });
+    }, { threshold: 0.22 });
+
+    observer.observe(footerCard);
+  })();
+</script>

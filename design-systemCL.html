@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html class="no-js html-homepage" lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design System — clint.work</title>
+  <meta name="description" content="Living design system and pattern library for clint.work. Documents all typographic styles, color tokens, UI components, layout patterns, motion behaviors, and technologies used in the reference design." />
+
+  <!-- Same CSS assets as original -->
+  <link rel="stylesheet" href="assets/6d92dfc1700fd38c_bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/f2e1cc227d6bbb41_bootstrap-theme.min.css" />
+  <link rel="stylesheet" href="assets/24fbf98a0312aa6d_hamburgers.min.css" />
+  <link rel="stylesheet" href="assets/de1e399b07289f3b_slick.css" />
+  <link rel="stylesheet" href="assets/029dedf319bc4536_front.min.css" />
+  <link rel="stylesheet" href="assets/76babfe96eed5898_gpe4ots.css" />
+  <link rel="stylesheet" href="assets/e9417875b1420aaf_style.css" />
+  <link rel="stylesheet" href="assets/ccd31ffa708d0258_styles.css" />
+
+  <!-- Degular font via CDN (same as original uses) -->
+  <link rel="preconnect" href="https://use.typekit.net" />
+  <link rel="stylesheet" href="https://use.typekit.net/rbs3wgu.css" />
+
+  <style>
+    /* ─── Design System Page Chrome ───────────────────────────────────────── */
+    :root {
+      --ds-nav-h: 56px;
+    }
+
+    /* Sticky top nav (design-system only, not from original) */
+    #ds-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      height: var(--ds-nav-h);
+      display: flex;
+      align-items: center;
+      padding: 0 2.6vw;
+      gap: 2.4vw;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    #ds-nav::-webkit-scrollbar { display: none; }
+    #ds-nav a {
+      color: rgba(255,255,255,0.5);
+      font-family: "degular", sans-serif;
+      font-size: 0.72vw;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none !important;
+      white-space: nowrap;
+      transition: color 0.25s ease;
+    }
+    #ds-nav a:hover { color: var(--red); }
+    #ds-nav .ds-logo {
+      font-size: 0.8vw;
+      font-weight: 900;
+      color: var(--white);
+      margin-right: 1.6vw;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    #ds-nav .sep {
+      color: rgba(255,255,255,0.18);
+      flex-shrink: 0;
+    }
+
+    /* Section wrapper */
+    .ds-section {
+      padding: 8vw 3.1vw 5vw;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .ds-section:first-of-type { border-top: none; }
+
+    .ds-section-title {
+      font-family: "degular", sans-serif;
+      font-size: 0.72vw;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 3vw;
+    }
+    .ds-section-label {
+      font-family: "degular", sans-serif;
+      font-size: 0.72vw;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 0.8vw;
+      display: block;
+    }
+
+    /* ─── Hero clone overrides (only text changed) ────────────────────────── */
+    /* Keep hero exactly as original – no style changes allowed here */
+
+    /* ─── Typography spec table ───────────────────────────────────────────── */
+    .type-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 2.1vw 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      gap: 2vw;
+    }
+    .type-row:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+    .type-meta {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3vw;
+      min-width: 12vw;
+    }
+    .type-name {
+      font-family: "degular", sans-serif;
+      font-size: 0.72vw;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .type-spec {
+      font-family: "degular", sans-serif;
+      font-size: 0.72vw;
+      font-weight: 400;
+      color: rgba(255,255,255,0.2);
+    }
+    .type-preview {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* ─── Color swatches ──────────────────────────────────────────────────── */
+    .color-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2vw;
+    }
+    .color-swatch {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6vw;
+      min-width: 10vw;
+    }
+    .color-swatch .swatch-block {
+      height: 7vw;
+      border-radius: 1.2vw;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .color-swatch .swatch-label {
+      font-family: "degular", sans-serif;
+      font-size: 0.65vw;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    .color-swatch .swatch-value {
+      font-family: "degular", sans-serif;
+      font-size: 0.65vw;
+      font-weight: 400;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* ─── Component demo rows ─────────────────────────────────────────────── */
+    .comp-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2vw;
+      padding: 2.6vw 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .comp-row:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+    .comp-state-label {
+      font-family: "degular", sans-serif;
+      font-size: 0.6vw;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-top: 0.6vw;
+      display: block;
+      text-align: center;
+    }
+    .comp-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.4vw;
+    }
+
+    /* Motion gallery */
+    .motion-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2vw;
+    }
+    .motion-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 1.6vw;
+      padding: 2.6vw;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2vw;
+    }
+    .motion-card-title {
+      font-family: "degular", sans-serif;
+      font-size: 0.72vw;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    .motion-card-desc {
+      font-family: "degular", sans-serif;
+      font-size: 0.72vw;
+      font-weight: 400;
+      color: rgba(255,255,255,0.25);
+      line-height: 1.5;
+    }
+    .motion-demo-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 6vw;
+    }
+
+    /* Layout demo blocks */
+    .layout-block {
+      background: rgba(255,0,0,0.06);
+      border: 1px dashed rgba(255,0,0,0.3);
+      border-radius: 0.6vw;
+      padding: 1vw;
+      text-align: center;
+      font-family: "degular", sans-serif;
+      font-size: 0.65vw;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,0,0,0.5);
+    }
+    .layout-preview {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 1.6vw;
+      padding: 2vw;
+      margin-bottom: 1.6vw;
+    }
+    .layout-preview-title {
+      font-family: "degular", sans-serif;
+      font-size: 0.65vw;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 1.2vw;
+    }
+
+    /* Tech table */
+    .tech-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .tech-table th {
+      text-align: left;
+      font-family: "degular", sans-serif;
+      font-size: 0.65vw;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      padding: 0.8vw 1vw;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .tech-table td {
+      font-family: "degular", sans-serif;
+      font-size: 0.75vw;
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      padding: 1.1vw 1vw;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .tech-table td:first-child {
+      font-weight: 700;
+      color: var(--white);
+    }
+    .tech-tag {
+      display: inline-block;
+      background: rgba(255,0,0,0.12);
+      border: 1px solid rgba(255,0,0,0.25);
+      border-radius: 100vw;
+      padding: 0.15vw 0.7vw;
+      font-size: 0.6vw;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-left: 0.5vw;
+    }
+    code.ds-code {
+      font-family: "Courier New", monospace;
+      font-size: 0.65vw;
+      background: rgba(255,255,255,0.06);
+      border-radius: 4px;
+      padding: 0.1vw 0.4vw;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* Arrow animation keyframe demo */
+    @keyframes ds-arrow-down {
+      0% { transform: translateY(-50%) rotate(90deg) translateX(0); }
+      50% { transform: translateY(-50%) rotate(90deg) translateX(0.5vw); }
+      100% { transform: translateY(-50%) rotate(90deg) translateX(0); }
+    }
+    .demo-arrow-animated {
+      display: inline-block;
+      animation: ds-arrow-down 1.5s infinite;
+      font-size: 1.4vw;
+      color: var(--white);
+    }
+
+    /* Trigger animate_trigger demo */
+    .ds-animate-trigger-demo {
+      transform: translate3d(0, 1.5vw, 0);
+      opacity: 0;
+      transition: all 0.5s ease 0.1s;
+      will-change: transform;
+    }
+    .ds-animate-trigger-demo.animate_in {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    /* Scroll offset for anchor links */
+    html { scroll-behavior: smooth; }
+    .ds-anchor {
+      display: block;
+      height: calc(var(--ds-nav-h) + 2vw);
+      margin-top: calc(-1 * (var(--ds-nav-h) + 2vw));
+      pointer-events: none;
+    }
+
+    /* Gradient surface demo */
+    .grad-swatch {
+      height: 7vw;
+      border-radius: 1.2vw;
+      margin-bottom: 0.6vw;
+    }
+
+    /* Icon demo */
+    .icon-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2vw;
+      align-items: center;
+    }
+    .icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8vw;
+    }
+    .icon-item svg {
+      display: block;
+    }
+
+    /* Sub-section heading */
+    .ds-sub-title {
+      font-family: "degular", sans-serif;
+      font-size: 0.65vw;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin: 2.6vw 0 1.2vw;
+    }
+
+    /* Marquee text fix for design system (ensure overflow hidden) */
+    #section-motion .marquee_text {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body class="page-homepage">
+
+  <!-- ══════════════════════════════════════════════════════════
+       TOP NAV
+  ══════════════════════════════════════════════════════════ -->
+  <nav id="ds-nav" aria-label="Design system navigation">
+    <span class="ds-logo">clint.work — DS</span>
+    <span class="sep">|</span>
+    <a href="#section-hero">0 · Hero</a>
+    <a href="#section-typography">1 · Typography</a>
+    <a href="#section-colors">2 · Colors</a>
+    <a href="#section-components">3 · Components</a>
+    <a href="#section-layout">4 · Layout</a>
+    <a href="#section-motion">5 · Motion</a>
+    <a href="#section-icons">6 · Icons</a>
+    <a href="#section-tech">7 · Tech Stack</a>
+  </nav>
+
+  <div class="site" style="padding-top: var(--ds-nav-h);">
+  <div class="site-inner">
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 0 · HERO (exact clone, adapted text)
+    ══════════════════════════════════════════════════════ -->
+    <span id="section-hero" class="ds-anchor"></span>
+
+    <!-- Static header — exact original markup -->
+    <header class="static absolute flex flex-justify flex-center active" style="z-index:10;">
+      <div class="logo">
+        <svg fill="none" height="100%" viewbox="0 0 41 42" width="100%" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.5 41.5C9.178 41.5 0 32.322 0 21S9.178.5 20.5.5 41 9.678 41 21s-9.178 20.5-20.5 20.5z" fill="#fff"/>
+          <path d="M20.5 34.217c-7.29 0-13.217-5.927-13.217-13.217S13.21 7.783 20.5 7.783 33.717 13.71 33.717 21 27.79 34.217 20.5 34.217z" fill="#000"/>
+          <circle cx="20.5" cy="21" fill="#fff" r="6.433"/>
+        </svg>
+      </div>
+      <div>
+        <nav class="menu-static-menu-container" aria-label="Primary navigation">
+          <ul class="menu font-25">
+            <li class="menu-item"><a href="#section-hero">Home</a></li>
+            <li class="menu-item"><a href="#section-components">Work</a></li>
+            <li class="menu-item"><a href="#section-tech">Lab</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- First section — exact original structure, adapted text -->
+    <div class="first-section relative" id="first-section">
+      <!-- Background video (same as original) -->
+      <video class="video-js video-on active" autoplay loop muted playsinline id="video_reel"
+        style="z-index:0; opacity:1; position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">
+        <source src="assets/4de01ef81c2d20c9_Home_Lights_OFF.mp4" type="video/mp4"/>
+      </video>
+
+      <!-- Adapted text only — same classes, same structure -->
+      <div class="small-text font-18 uppercase absolute show">Design System v2</div>
+    </div>
+
+    <!-- Second section (red, with case-blocks) — exact original structure -->
+    <div class="second-section relative red" style="position:relative; overflow:hidden;">
+      <!-- Adapted titles using exact original classes -->
+      <div class="big-text first font-150 uppercase italic" style="position:absolute; top:2vw; left:2.6vw; z-index:2; letter-spacing:-0.05em;">
+        A living<br/><span style="font-weight:900;">pattern</span>
+      </div>
+      <div class="big-text second font-150 uppercase italic box-corner" style="position:absolute; bottom:3vw; right:2.6vw; z-index:2; letter-spacing:-0.05em;">
+        <div class="box absolute"></div>
+        <div class="box absolute"></div>
+        <div class="box absolute"></div>
+        <div class="box absolute"></div>
+        library
+      </div>
+
+      <!-- Video (same asset as original reel) -->
+      <video autoplay loop muted playsinline
+        style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1; opacity:0.45; border-radius:inherit;">
+        <source src="assets/5be9851e4ea86424_Home_Lights_On.mp4" type="video/mp4"/>
+      </video>
+
+      <!-- Case blocks (exact classes from original) -->
+      <div class="case-block disabled bg-img relative active"
+        style="background-image:url('assets/e04c0dbee08e8930_sensorama_header-op2.gif'); position:relative; z-index:3; height:9.1vw; overflow:hidden; margin-bottom:0.4vw; border-radius:3.6vw;">
+        <div class="title absolute font-100 font-black uppercase">Sensorama</div>
+        <div class="top-buttons flex absolute">
+          <div class="box font-15 uppercase">Campaign</div>
+          <div class="box font-15 uppercase">3D</div>
+        </div>
+      </div>
+      <div class="case-block disabled bg-img relative active"
+        style="background-image:url('assets/c8ad8b00339c2fab_Header01.gif'); position:relative; z-index:3; height:9.1vw; overflow:hidden; margin-bottom:0.4vw; border-radius:3.6vw;">
+        <div class="title absolute font-100 font-black uppercase">Banana Milk</div>
+        <div class="top-buttons flex absolute">
+          <div class="box font-15 uppercase">Motion</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Marquee (exact original markup + classes) -->
+    <div class="marquee_text first font-150 italic relative" style="overflow:hidden; white-space:nowrap; margin:2vw 0 1vw;">
+      <div style="display:inline-flex; align-items:center; gap:2vw; animation:marqueeLeft 30s linear infinite;">
+        <svg height="63.474" viewbox="0 0 62.577 63.474" width="62.577" xmlns="http://www.w3.org/2000/svg"><path d="M60.782,34.6,43.638,31.574l17.144-3.023a2.173,2.173,0,0,0-.755-4.279L42.884,27.295l15.076-8.7a2.172,2.172,0,1,0-2.172-3.763l-15.075,8.7L51.9,10.2A2.172,2.172,0,0,0,48.573,7.4L37.383,20.74,43.337,4.382A2.172,2.172,0,0,0,39.254,2.9L33.3,19.254V2.172a2.172,2.172,0,0,0-4.345,0V19.253L23.113,3.2A2.172,2.172,0,0,0,19.03,4.688l5.842,16.051L13.893,7.654a2.173,2.173,0,0,0-3.328,2.793L21.544,23.532,6.752,14.992a2.172,2.172,0,0,0-2.172,3.763l14.793,8.54L2.55,24.329A2.172,2.172,0,0,0,1.8,28.608l16.822,2.966L1.8,34.54a2.172,2.172,0,1,0,.754,4.279l16.821-2.966L4.579,44.393a2.173,2.173,0,1,0,2.172,3.763l14.792-8.54L10.565,52.7a2.173,2.173,0,0,0,3.328,2.793L24.873,42.409,19.03,58.459a2.172,2.172,0,1,0,4.083,1.486l5.842-16.051V61.3a2.172,2.172,0,0,0,4.345,0V43.894l5.954,16.358a2.173,2.173,0,1,0,4.083-1.486L37.383,42.408l11.19,13.335A2.173,2.173,0,0,0,51.9,52.951L40.712,39.616l15.075,8.7a2.173,2.173,0,1,0,2.172-3.763l-15.075-8.7,17.143,3.023a2.172,2.172,0,1,0,.755-4.279" fill="#fff"/></svg>
+        <div class="text">design system</div>
+        <svg height="63.474" viewbox="0 0 62.577 63.474" width="62.577" xmlns="http://www.w3.org/2000/svg"><path d="M60.782,34.6,43.638,31.574l17.144-3.023a2.173,2.173,0,0,0-.755-4.279L42.884,27.295l15.076-8.7a2.172,2.172,0,1,0-2.172-3.763l-15.075,8.7L51.9,10.2A2.172,2.172,0,0,0,48.573,7.4L37.383,20.74,43.337,4.382A2.172,2.172,0,0,0,39.254,2.9L33.3,19.254V2.172a2.172,2.172,0,0,0-4.345,0V19.253L23.113,3.2A2.172,2.172,0,0,0,19.03,4.688l5.842,16.051L13.893,7.654a2.173,2.173,0,0,0-3.328,2.793L21.544,23.532,6.752,14.992a2.172,2.172,0,0,0-2.172,3.763l14.793,8.54L2.55,24.329A2.172,2.172,0,0,0,1.8,28.608l16.822,2.966L1.8,34.54a2.172,2.172,0,1,0,.754,4.279l16.821-2.966L4.579,44.393a2.173,2.173,0,1,0,2.172,3.763l14.792-8.54L10.565,52.7a2.173,2.173,0,0,0,3.328,2.793L24.873,42.409,19.03,58.459a2.172,2.172,0,1,0,4.083,1.486l5.842-16.051V61.3a2.172,2.172,0,0,0,4.345,0V43.894l5.954,16.358a2.173,2.173,0,1,0,4.083-1.486L37.383,42.408l11.19,13.335A2.173,2.173,0,0,0,51.9,52.951L40.712,39.616l15.075,8.7a2.173,2.173,0,1,0,2.172-3.763l-15.075-8.7,17.143,3.023a2.172,2.172,0,1,0,.755-4.279" fill="#fff"/></svg>
+        <div class="text">pattern library</div>
+        <svg height="63.474" viewbox="0 0 62.577 63.474" width="62.577" xmlns="http://www.w3.org/2000/svg"><path d="M60.782,34.6,43.638,31.574l17.144-3.023a2.173,2.173,0,0,0-.755-4.279L42.884,27.295l15.076-8.7a2.172,2.172,0,1,0-2.172-3.763l-15.075,8.7L51.9,10.2A2.172,2.172,0,0,0,48.573,7.4L37.383,20.74,43.337,4.382A2.172,2.172,0,0,0,39.254,2.9L33.3,19.254V2.172a2.172,2.172,0,0,0-4.345,0V19.253L23.113,3.2A2.172,2.172,0,0,0,19.03,4.688l5.842,16.051L13.893,7.654a2.173,2.173,0,0,0-3.328,2.793L21.544,23.532,6.752,14.992a2.172,2.172,0,0,0-2.172,3.763l14.793,8.54L2.55,24.329A2.172,2.172,0,0,0,1.8,28.608l16.822,2.966L1.8,34.54a2.172,2.172,0,1,0,.754,4.279l16.821-2.966L4.579,44.393a2.173,2.173,0,1,0,2.172,3.763l14.792-8.54L10.565,52.7a2.173,2.173,0,0,0,3.328,2.793L24.873,42.409,19.03,58.459a2.172,2.172,0,1,0,4.083,1.486l5.842-16.051V61.3a2.172,2.172,0,0,0,4.345,0V43.894l5.954,16.358a2.173,2.173,0,1,0,4.083-1.486L37.383,42.408l11.19,13.335A2.173,2.173,0,0,0,51.9,52.951L40.712,39.616l15.075,8.7a2.173,2.173,0,1,0,2.172-3.763l-15.075-8.7,17.143,3.023a2.172,2.172,0,1,0,.755-4.279" fill="#fff"/></svg>
+        <div class="text">clint.work</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 1 · TYPOGRAPHY
+    ══════════════════════════════════════════════════════ -->
+    <div class="ds-section" id="section-typography">
+      <div class="ds-section-title">01 — Typography</div>
+
+      <!-- font-150 (Heading 1) -->
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-name">Heading 1</span>
+          <span class="type-spec">7.8vw / 120% · .font-150</span>
+        </div>
+        <div class="type-preview">
+          <div class="font-150 italic uppercase" style="letter-spacing:-0.03em;">High-End Creative</div>
+        </div>
+      </div>
+
+      <!-- font-130 (Heading 2) -->
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-name">Heading 2</span>
+          <span class="type-spec">6.8vw / 75% · .font-130</span>
+        </div>
+        <div class="type-preview">
+          <div class="font-130 italic uppercase">Motion Studio</div>
+        </div>
+      </div>
+
+      <!-- font-100 (Heading 3) -->
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-name">Heading 3</span>
+          <span class="type-spec">5.2vw / 70% · .font-100</span>
+        </div>
+        <div class="type-preview">
+          <div class="font-100 uppercase">Sensorama</div>
+        </div>
+      </div>
+
+      <!-- font-76 (Heading 4) -->
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-name">Heading 4</span>
+          <span class="type-spec">4.2vw / 120% · .font-76</span>
+        </div>
+        <div class="type-preview">
+          <div class="font-76">Design &amp; Animation</div>
+        </div>
+      </div>
+
+      <!-- font-70 (Bold L) -->
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-name">Bold L</span>
+          <span class="type-spec">3.6vw / 120% · .font-70</span>
+        </div>
+        <div class="type-preview">
+          <div class="font-70">Creative Concept</div>
+        </div>
+      </div>
+
+      <!-- font-50 (Bold M) -->
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-name">Bold M</span>
+          <span class="type-spec">2.6vw / 120% · .font-50</span>
+        </div>
+        <div class="type-preview">
+          <div class="font-50">hello@clint.work</div>
+        </div>
+      </div>
+
+      <!-- font-40 (Paragraph / Regular L) -->
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-name">Regular L</span>
+          <span class="type-spec">2.1vw / 140% · .font-40</span>
+        </div>
+        <div class="type-preview">
+          <div class="font-40">Visual development, concept art, animation, storyboard, content development, screenwriting, character design.</div>
+        </div>
+      </div>
+
+      <!-- font-30 (Regular M) -->
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-name">Regular M</span>
+          <span class="type-spec">1.6vw / 120% · .font-30 · weight 900</span>
+        </div>
+        <div class="type-preview">
+          <div class="font-30 uppercase">Projects, inquiries and new business</div>
+        </div>
+      </div>
+
+      <!-- font-25 (Regular S) -->
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-name">Regular S</span>
+          <span class="type-spec">1.3vw / 120% · .font-25 · weight 500</span>
+        </div>
+        <div class="type-preview">
+          <div class="font-25 uppercase">About · Work · Lab</div>
+        </div>
+      </div>
+
+      <!-- font-18 (Body / Label) -->
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-name">Body / Label</span>
+          <span class="type-spec">1vw / 120% · .font-18 · weight 500</span>
+        </div>
+        <div class="type-preview">
+          <div class="font-18 uppercase">Design System v2 — Living Documentation</div>
+        </div>
+      </div>
+
+      <!-- font-15 (Small) -->
+      <div class="type-row">
+        <div class="type-meta">
+          <span class="type-name">Small</span>
+          <span class="type-spec">0.9vw / 120% · .font-15 · weight 500</span>
+        </div>
+        <div class="type-preview">
+          <div class="font-15 uppercase">UTC-3 · São Paulo, Brazil · Mon–Fri 9–18h</div>
+        </div>
+      </div>
+
+      <!-- Weight variants -->
+      <div class="ds-sub-title">Weight Variants</div>
+      <div class="comp-row" style="flex-wrap:wrap; align-items:baseline; gap:2vw;">
+        <div class="comp-item">
+          <div class="font-40 font-light">Light</div>
+          <span class="comp-state-label">.font-light (300)</span>
+        </div>
+        <div class="comp-item">
+          <div class="font-40 font-regular">Regular</div>
+          <span class="comp-state-label">.font-regular (400)</span>
+        </div>
+        <div class="comp-item">
+          <div class="font-40 font-medium">Medium</div>
+          <span class="comp-state-label">.font-medium (500)</span>
+        </div>
+        <div class="comp-item">
+          <div class="font-40 font-bold">Bold</div>
+          <span class="comp-state-label">.font-bold (700)</span>
+        </div>
+        <div class="comp-item">
+          <div class="font-40 font-black">Black</div>
+          <span class="comp-state-label">.font-black (900)</span>
+        </div>
+        <div class="comp-item">
+          <div class="font-40 italic">Italic</div>
+          <span class="comp-state-label">.italic</span>
+        </div>
+        <div class="comp-item">
+          <div class="font-40 uppercase">uppercase</div>
+          <span class="comp-state-label">.uppercase</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 2 · COLORS & SURFACES
+    ══════════════════════════════════════════════════════ -->
+    <div class="ds-section" id="section-colors">
+      <div class="ds-section-title">02 — Colors &amp; Surfaces</div>
+
+      <div class="ds-sub-title">Brand Tokens — <code class="ds-code">:root</code></div>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#000000;"></div>
+          <span class="swatch-label">Black</span>
+          <span class="swatch-value">--black · #000000</span>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#ffffff;"></div>
+          <span class="swatch-label">White</span>
+          <span class="swatch-value">--white · #ffffff</span>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#ff0000;"></div>
+          <span class="swatch-label">Red (accent)</span>
+          <span class="swatch-value">--red · #ff0000</span>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#bcbcbc;"></div>
+          <span class="swatch-label">Gray</span>
+          <span class="swatch-value">--gray · #bcbcbc</span>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#808080;"></div>
+          <span class="swatch-label">Dark Gray</span>
+          <span class="swatch-value">--dark-gray · #808080</span>
+        </div>
+      </div>
+
+      <div class="ds-sub-title" style="margin-top:3vw;">Background Surfaces</div>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#000000;"></div>
+          <span class="swatch-label">Page Background</span>
+          <span class="swatch-value">var(--black)</span>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#ff0000;"></div>
+          <span class="swatch-label">Red Section</span>
+          <span class="swatch-value">.second-section.red</span>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#ffffff;"></div>
+          <span class="swatch-label">Footer Card</span>
+          <span class="swatch-value">.footer-white</span>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:rgba(0,0,0,0.3);"></div>
+          <span class="swatch-label">Case Block Overlay</span>
+          <span class="swatch-value">rgba(0,0,0,0.3)</span>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#000; border-radius:1.2vw; background:linear-gradient(180deg,transparent 0%,#000 100%);"></div>
+          <span class="swatch-label">Video Dark Overlay</span>
+          <span class="swatch-value">Radial gradient mask</span>
+        </div>
+      </div>
+
+      <div class="ds-sub-title" style="margin-top:3vw;">Borders &amp; Dividers</div>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:transparent; border:2px solid #ff0000;"></div>
+          <span class="swatch-label">Red Border</span>
+          <span class="swatch-value">2px solid var(--red)</span>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:transparent; border:1px solid #ffffff;"></div>
+          <span class="swatch-label">White Border</span>
+          <span class="swatch-value">1px solid var(--white)</span>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:transparent; border:2px solid #000000;"></div>
+          <span class="swatch-label">Black Border (footer)</span>
+          <span class="swatch-value">2px solid var(--black)</span>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:transparent; border-bottom:1px solid #fff;"></div>
+          <span class="swatch-label">Divider Line</span>
+          <span class="swatch-value">1px solid var(--white)</span>
+        </div>
+      </div>
+
+      <!-- Box shadow -->
+      <div class="ds-sub-title" style="margin-top:3vw;">Box Shadows</div>
+      <div class="comp-row">
+        <div class="comp-item">
+          <div style="width:3vw; height:3vw; background:var(--white); box-shadow:5px 5px 0px 0px rgba(0,0,0,1); border-radius:0;"></div>
+          <span class="comp-state-label">.box-corner .box</span>
+        </div>
+      </div>
+
+      <!-- Gradient surfaces -->
+      <div class="ds-sub-title" style="margin-top:3vw;">Gradient &amp; Mask (Radial — Video Reveal)</div>
+      <div class="color-grid">
+        <div class="color-swatch" style="min-width:30vw;">
+          <div class="grad-swatch" style="background: radial-gradient(circle, rgba(29,29,27,1) 26.9%, rgba(27,27,25,0.42) 67%, rgba(20,20,19,0.22) 81.5%, rgba(9,9,8,0.07) 91.7%, rgba(0,0,0,0) 96.5%);"></div>
+          <span class="swatch-label">SVG Radial Mask</span>
+          <span class="swatch-value">Used on .video-on for spotlight mouse effect</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 3 · UI COMPONENTS
+    ══════════════════════════════════════════════════════ -->
+    <div class="ds-section" id="section-components">
+      <div class="ds-section-title">03 — UI Components</div>
+
+      <!-- ── Buttons ──────────────────────────────────────── -->
+      <div class="ds-sub-title">Buttons</div>
+
+      <!-- btn-circle -->
+      <div class="comp-row">
+        <div class="comp-item">
+          <div class="btn-circle font-25 uppercase">See all work</div>
+          <span class="comp-state-label">.btn-circle (default)</span>
+        </div>
+        <div class="comp-item">
+          <!-- Simulated hover via inline style -->
+          <div class="btn-circle font-25 uppercase" style="border-color:var(--red); background-color:var(--red);">See all work</div>
+          <span class="comp-state-label">.btn-circle:hover</span>
+        </div>
+      </div>
+
+      <!-- case-block top-buttons .box -->
+      <div class="comp-row">
+        <div class="comp-item">
+          <div class="font-15 uppercase" style="border:1px solid var(--white); border-radius:100vw; padding:0.7vw 1.4vw; display:inline-block; transition:all 0.3s ease-in-out;">Campaign</div>
+          <span class="comp-state-label">.top-buttons .box (default)</span>
+        </div>
+        <div class="comp-item">
+          <div class="font-15 uppercase" style="border:1px solid var(--red); border-radius:100vw; padding:0.7vw 1.4vw; display:inline-block; background-color:var(--red);">Campaign</div>
+          <span class="comp-state-label">.top-buttons .box:hover</span>
+        </div>
+      </div>
+
+      <!-- footer nav pill -->
+      <div class="comp-row">
+        <div class="comp-item">
+          <div style="border:2px solid #000; border-radius:100vw; padding:3px 0.8vw 4px; display:inline-block; font-size:1.4vw; background:#fff; color:#000;">about</div>
+          <span class="comp-state-label">.footer-white nav pill (default)</span>
+        </div>
+        <div class="comp-item">
+          <div style="border:2px solid var(--red); border-radius:100vw; padding:3px 0.8vw 4px; display:inline-block; font-size:1.4vw; background:var(--red); color:#fff;">about</div>
+          <span class="comp-state-label">.footer-white nav pill:hover</span>
+        </div>
+      </div>
+
+      <!-- form submit button -->
+      <div class="comp-row">
+        <div class="comp-item">
+          <button class="font-25 uppercase" style="border:1px solid var(--white); border-radius:80vw; padding:0.3vw 2vw 0.5vw; background:transparent; color:var(--white); font-family:'degular',sans-serif; font-weight:800; cursor:pointer; transition:all 0.3s;">Submit</button>
+          <span class="comp-state-label">form submit (default)</span>
+        </div>
+        <div class="comp-item">
+          <button class="font-25 uppercase" style="border:1px solid var(--white); border-radius:80vw; padding:0.3vw 2vw 0.5vw; background:var(--white); color:#000; font-family:'degular',sans-serif; font-weight:800; cursor:pointer;">Submit</button>
+          <span class="comp-state-label">form submit:hover</span>
+        </div>
+      </div>
+
+      <!-- ── Case Block ─────────────────────────────────── -->
+      <div class="ds-sub-title" style="margin-top:3vw;">Case Block (.case-block)</div>
+      <div class="comp-row" style="flex-direction:column; align-items:stretch;">
+        <!-- collapsed state -->
+        <div style="margin-bottom:1vw;">
+          <span class="ds-section-label">Collapsed (default 9.1vw height)</span>
+          <div class="case-block bg-img relative"
+            style="background-image:url('assets/c8ad8b00339c2fab_Header01.gif'); height:9.1vw; overflow:hidden; border-radius:3.6vw; margin-bottom:0;">
+            <div class="title absolute font-100 font-black uppercase">Banana Milk</div>
+            <div class="top-buttons flex absolute">
+              <div class="box font-15 uppercase">Motion</div>
+              <div class="box font-15 uppercase">Campaign</div>
+            </div>
+          </div>
+        </div>
+        <!-- expanded state -->
+        <div>
+          <span class="ds-section-label">Expanded (.active, 40.1vw height)</span>
+          <div class="case-block bg-img relative active"
+            style="background-image:url('assets/c8ad8b00339c2fab_Header01.gif'); height:40.1vw; overflow:hidden; border-radius:3.6vw; margin-bottom:0; display:flex; justify-content:center; align-items:center;">
+            <div class="bg-black absolute" style="background-color:rgba(0,0,0,0.3);width:100%;height:100%;top:0;left:0;"></div>
+            <div class="title absolute font-100 font-black uppercase" style="font-size:10.4vw; left:50%; transform:translate(-50%,-50%); top:50%;">Banana Milk</div>
+            <div class="top-buttons flex absolute" style="top:1.1vw; transform:translateY(0%); left:8vw; gap:2.1vw;">
+              <div class="box font-15 uppercase">Motion</div>
+              <div class="box font-15 uppercase">Campaign</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Form Inputs ───────────────────────────────── -->
+      <div class="ds-sub-title" style="margin-top:3vw;">Form Inputs</div>
+      <div style="background:transparent; padding:2vw 0; border-top:1px solid var(--white); width:60%;">
+        <p style="margin-bottom:0;">
+          <input type="text" placeholder="YOUR NAME" class="font-40" style="background-color:transparent; border:none; text-transform:uppercase; font-size:1.7vw; color:var(--white); border-bottom:1px solid var(--white); width:100%; padding:1.6vw 0; font-family:'degular',sans-serif;" />
+        </p>
+        <p style="margin-top:0; margin-bottom:0;">
+          <input type="email" placeholder="YOUR EMAIL" class="font-40" style="background-color:transparent; border:none; text-transform:uppercase; font-size:1.7vw; color:var(--white); border-bottom:1px solid var(--white); width:100%; padding:1.6vw 0; font-family:'degular',sans-serif;" />
+        </p>
+      </div>
+      <div style="padding-top:0.8vw;">
+        <span class="wpcf7-not-valid-tip" style="position:relative;">This field is required.</span>
+      </div>
+
+      <!-- ── Footer White Card ──────────────────────────── -->
+      <div class="ds-sub-title" style="margin-top:3vw;">Footer White Card (.footer-white)</div>
+      <div class="footer-white flex flex-justify flex-center" style="margin:0 0 2vw; padding:2.6vw 4.2vw;">
+        <div>
+          <div class="countries flex flex-center" style="gap:0.5vw; margin-bottom:2vw;">
+            <div class="brazil country-info font-100 active">Work</div>
+            <div class="arrow font-70">→</div>
+            <div class="berlin country-info font-100">Careers</div>
+          </div>
+          <div class="infos brazil active">
+            <div class="utc uppercase font-30 font-bold" style="margin-bottom:5vw;">Projects, inquiries and new business</div>
+            <a class="email font-50" href="mailto:hello@clint.work" style="display:block; margin-bottom:1vw;">hello@clint.work</a>
+          </div>
+        </div>
+        <div class="social-links flex" style="gap:13.6vw; flex-direction:row;">
+          <div class="flex flex-column uppercase" style="gap:1.6vw; font-size:1.6vw; line-height:68%; font-weight:600;">
+            <a href="https://www.instagram.com/clint.studio/" target="_blank">instagram</a>
+            <a href="https://www.behance.net/clint_studio" target="_blank">behance</a>
+            <a href="https://vimeo.com/clintstudio" target="_blank">vimeo</a>
+          </div>
+          <div class="footer-menu font-40">
+            <div class="menu-static-menu-container">
+              <ul class="menu" style="flex-direction:column; gap:0.5vw;">
+                <li style="border:2px solid var(--black); border-radius:100vw; padding:3px 0.8vw 4px; text-align:center;"><a href="#" style="font-size:1.4vw;">about</a></li>
+                <li style="border:2px solid var(--black); border-radius:100vw; padding:3px 0.8vw 4px; text-align:center;"><a href="#" style="font-size:1.4vw;">work</a></li>
+                <li style="border:2px solid var(--black); border-radius:100vw; padding:3px 0.8vw 4px; text-align:center;"><a href="#" style="font-size:1.4vw;">lab</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Cookie Notice ──────────────────────────────── -->
+      <div class="ds-sub-title" style="margin-top:3vw;">Cookie Notice Banner</div>
+      <div aria-label="Cookie Notice" class="cookie-revoke-hidden cn-position-bottom cn-effect-fade cookie-notice-visible" role="dialog" style="background-color:rgba(0,0,0,1); position:relative; bottom:auto; left:auto; right:auto; width:100%; border-radius:1vw; margin-bottom:1vw;">
+        <div class="cookie-notice-container" style="color:#fff">
+          <span class="cn-text-container" id="cn-notice-text-ds">By clicking "Agree", you agree to the use of cookies to improve and personalize your experience.</span>
+          <span class="cn-buttons-container" id="cn-notice-buttons-ds">
+            <a aria-label="Agree" class="cn-set-cookie cn-button" href="#" style="background-color:#ff0000">Agree</a>
+          </span>
+          <span class="cn-close-icon" title="No" style="cursor:pointer;"></span>
+        </div>
+      </div>
+
+      <!-- ── Slider Home slide item ────────────────────── -->
+      <div class="ds-sub-title" style="margin-top:3vw;">Slider Home — Slide Item States</div>
+      <div class="slider-home-container" style="position:relative;">
+        <div style="display:flex; gap:1vw; overflow:hidden; height:38vw; position:relative;">
+          <!-- current -->
+          <div class="slide-item" style="width:65vw; position:relative; border-radius:2.1vw; overflow:hidden; flex-shrink:0; filter:blur(0);">
+            <div class="video-block" style="width:100%; height:34.4vw; overflow:hidden; border-radius:2.1vw; background:#111;">
+              <video autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover; transition:all 0.5s ease-in-out;">
+                <source src="assets/1f30c8532137d876_Header01.mp4" type="video/mp4"/>
+              </video>
+            </div>
+            <div class="slide-info active" style="position:absolute; bottom:2vw; left:2.6vw; width:calc(100% - 5.2vw); display:flex; justify-content:space-between; align-items:flex-end;">
+              <div class="slide-title font-150 uppercase italic font-black" style="letter-spacing:-0.03em; line-height:0.8;">Banana<br/>Milk</div>
+              <div class="slide-text font-25" style="max-width:32.2vw; opacity:1;">A high-energy brand film blending live action with motion design for a Brazilian beverage brand.</div>
+            </div>
+            <span class="comp-state-label" style="text-align:left; display:block; margin-top:0.4vw;">Current (.current) — no blur, full width</span>
+          </div>
+          <!-- next -->
+          <div class="slide-item" style="width:21vw; position:relative; border-radius:2.1vw; overflow:hidden; flex-shrink:0; filter:blur(10px) brightness(0.7);">
+            <div class="video-block" style="width:100%; height:34.4vw; overflow:hidden; border-radius:2.1vw; background:#222;">
+              <video autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover;">
+                <source src="assets/3568b2d824a827e2_sensorama_header-op2.mp4" type="video/mp4"/>
+              </video>
+            </div>
+            <span class="comp-state-label" style="text-align:left; display:block; margin-top:0.4vw;">Next (.next) — blur(10px) brightness(0.7)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 4 · LAYOUT & SPACING
+    ══════════════════════════════════════════════════════ -->
+    <div class="ds-section" id="section-layout">
+      <div class="ds-section-title">04 — Layout &amp; Spacing</div>
+
+      <!-- Grid system -->
+      <div class="ds-sub-title">Grid System</div>
+      <div class="layout-preview">
+        <div class="layout-preview-title">12-column grid (.grid-12)</div>
+        <div class="grid-12" style="gap:0.4vw;">
+          <div class="grid-span-1"><div class="layout-block">1</div></div>
+          <div class="grid-span-1"><div class="layout-block">2</div></div>
+          <div class="grid-span-1"><div class="layout-block">3</div></div>
+          <div class="grid-span-1"><div class="layout-block">4</div></div>
+          <div class="grid-span-1"><div class="layout-block">5</div></div>
+          <div class="grid-span-1"><div class="layout-block">6</div></div>
+          <div class="grid-span-1"><div class="layout-block">7</div></div>
+          <div class="grid-span-1"><div class="layout-block">8</div></div>
+          <div class="grid-span-1"><div class="layout-block">9</div></div>
+          <div class="grid-span-1"><div class="layout-block">10</div></div>
+          <div class="grid-span-1"><div class="layout-block">11</div></div>
+          <div class="grid-span-1"><div class="layout-block">12</div></div>
+        </div>
+      </div>
+
+      <div class="layout-preview">
+        <div class="layout-preview-title">6-column grid (.grid-6)</div>
+        <div class="grid-6" style="gap:0.4vw;">
+          <div class="grid-span-1"><div class="layout-block">1</div></div>
+          <div class="grid-span-1"><div class="layout-block">2</div></div>
+          <div class="grid-span-1"><div class="layout-block">3</div></div>
+          <div class="grid-span-1"><div class="layout-block">4</div></div>
+          <div class="grid-span-1"><div class="layout-block">5</div></div>
+          <div class="grid-span-1"><div class="layout-block">6</div></div>
+        </div>
+      </div>
+
+      <div class="layout-preview">
+        <div class="layout-preview-title">4-column grid (.grid-4, gap: 2.4vw)</div>
+        <div class="grid-4">
+          <div class="layout-block">Col 1</div>
+          <div class="layout-block">Col 2</div>
+          <div class="layout-block">Col 3</div>
+          <div class="layout-block">Col 4</div>
+        </div>
+      </div>
+
+      <div class="layout-preview">
+        <div class="layout-preview-title">2-column grid (.grid-2, gap: 2.4vw)</div>
+        <div class="grid-2">
+          <div class="layout-block">Col 1</div>
+          <div class="layout-block">Col 2</div>
+        </div>
+      </div>
+
+      <!-- Flex utilities -->
+      <div class="ds-sub-title" style="margin-top:3vw;">Flex Utilities</div>
+      <div class="layout-preview">
+        <div class="layout-preview-title">.flex .flex-justify .flex-center</div>
+        <div class="flex flex-justify flex-center" style="background:rgba(255,255,255,0.04); padding:1vw; border-radius:0.6vw;">
+          <div class="layout-block" style="flex:0 0 auto;">Left</div>
+          <div class="layout-block" style="flex:0 0 auto;">Center</div>
+          <div class="layout-block" style="flex:0 0 auto;">Right</div>
+        </div>
+      </div>
+
+      <!-- Width utilities -->
+      <div class="ds-sub-title" style="margin-top:3vw;">Width Utilities</div>
+      <div class="comp-row" style="flex-direction:column; gap:0.6vw;">
+        <div style="background:rgba(255,0,0,0.08); border:1px dashed rgba(255,0,0,0.3); border-radius:0.6vw; height:2vw; width:25%; display:flex; align-items:center; padding:0 0.5vw;"><span class="type-name">.w-25</span></div>
+        <div style="background:rgba(255,0,0,0.08); border:1px dashed rgba(255,0,0,0.3); border-radius:0.6vw; height:2vw; width:33.33%; display:flex; align-items:center; padding:0 0.5vw;"><span class="type-name">.w-33</span></div>
+        <div style="background:rgba(255,0,0,0.08); border:1px dashed rgba(255,0,0,0.3); border-radius:0.6vw; height:2vw; width:50%; display:flex; align-items:center; padding:0 0.5vw;"><span class="type-name">.w-50</span></div>
+        <div style="background:rgba(255,0,0,0.08); border:1px dashed rgba(255,0,0,0.3); border-radius:0.6vw; height:2vw; width:66.66%; display:flex; align-items:center; padding:0 0.5vw;"><span class="type-name">.w-66</span></div>
+        <div style="background:rgba(255,0,0,0.08); border:1px dashed rgba(255,0,0,0.3); border-radius:0.6vw; height:2vw; width:70%; display:flex; align-items:center; padding:0 0.5vw;"><span class="type-name">.w-70</span></div>
+        <div style="background:rgba(255,0,0,0.08); border:1px dashed rgba(255,0,0,0.3); border-radius:0.6vw; height:2vw; width:75%; display:flex; align-items:center; padding:0 0.5vw;"><span class="type-name">.w-75</span></div>
+        <div style="background:rgba(255,0,0,0.08); border:1px dashed rgba(255,0,0,0.3); border-radius:0.6vw; height:2vw; width:80%; display:flex; align-items:center; padding:0 0.5vw;"><span class="type-name">.w-80</span></div>
+      </div>
+
+      <!-- Key spacing values -->
+      <div class="ds-sub-title" style="margin-top:3vw;">Key Spacing Values (vw-based)</div>
+      <table class="tech-table">
+        <thead><tr><th>Property</th><th>Value</th><th>Context</th></tr></thead>
+        <tbody>
+          <tr><td>Header padding</td><td>2.1vw 2.6vw 2.1vw 3.1vw</td><td>All pages</td></tr>
+          <tr><td>Section side padding</td><td>3.1vw</td><td>.work-section, .big-title</td></tr>
+          <tr><td>Footer border-radius</td><td>2.6vw</td><td>.footer-white</td></tr>
+          <tr><td>Case block border-radius</td><td>3.6vw</td><td>.second-section, .lp-section</td></tr>
+          <tr><td>Card border-radius</td><td>2.1vw</td><td>video-block, content-grid items</td></tr>
+          <tr><td>First section min-height</td><td>50.5vw</td><td>.first-section</td></tr>
+          <tr><td>Slider height</td><td>55.5vw</td><td>.slider-home</td></tr>
+          <tr><td>Work block image height</td><td>26vw</td><td>.work-section .work-block .bg-img</td></tr>
+          <tr><td>Footer margin top</td><td>9.4vw</td><td>.footer-white</td></tr>
+        </tbody>
+      </table>
+
+      <!-- Layout patterns -->
+      <div class="ds-sub-title" style="margin-top:3vw;">Real Layout Patterns</div>
+
+      <!-- Hero layout pattern -->
+      <div class="layout-preview">
+        <div class="layout-preview-title">Pattern A: Hero (first-section + second-section)</div>
+        <div style="display:flex; flex-direction:column; gap:0.4vw;">
+          <div class="layout-block" style="height:8vw; border-radius:0;">first-section · min-height: 50.5vw · full-bleed video bg</div>
+          <div class="layout-block" style="height:4vw; border-radius:3.6vw; border-color:rgba(255,0,0,0.5);">second-section.red · rounded card · border: 2px solid red</div>
+        </div>
+      </div>
+
+      <!-- Work grid pattern -->
+      <div class="layout-preview">
+        <div class="layout-preview-title">Pattern B: Work Section Grid (2 cols × N rows)</div>
+        <div class="flex" style="flex-wrap:wrap; gap:0.8vw;">
+          <div class="layout-block" style="width:calc(50% - 0.4vw); height:5vw;">work-block 1 · 50%</div>
+          <div class="layout-block" style="width:calc(50% - 0.4vw); height:5vw;">work-block 2 · 50%</div>
+          <div class="layout-block" style="width:calc(50% - 0.4vw); height:5vw;">work-block 3 · 50%</div>
+          <div class="layout-block" style="width:calc(50% - 0.4vw); height:5vw;">work-block 4 · 50%</div>
+        </div>
+      </div>
+
+      <!-- Slider pattern -->
+      <div class="layout-preview">
+        <div class="layout-preview-title">Pattern C: Slider (65vw current + 21vw next + 10vw next-next)</div>
+        <div style="display:flex; gap:1vw; overflow:hidden;">
+          <div class="layout-block" style="flex:0 0 65vw; height:4vw;">current · 65vw · blur(0)</div>
+          <div class="layout-block" style="flex:0 0 21vw; height:4vw; opacity:0.5;">next · 21vw · blur(10px)</div>
+          <div class="layout-block" style="flex:0 0 10vw; height:4vw; opacity:0.3;">next-next · 10vw · blur(30px)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 5 · MOTION & INTERACTION
+    ══════════════════════════════════════════════════════ -->
+    <div class="ds-section" id="section-motion">
+      <div class="ds-section-title">05 — Motion &amp; Interaction</div>
+
+      <div class="motion-grid">
+        <!-- Entrance animation -->
+        <div class="motion-card">
+          <div class="motion-card-title">Entrance Animation</div>
+          <div class="motion-demo-area">
+            <div class="animate_trigger animate_in" style="font-family:'degular',sans-serif; font-size:1.3vw; color:var(--white); font-weight:700; text-transform:uppercase;">
+              Visible State
+            </div>
+          </div>
+          <div class="motion-card-desc">
+            Class: <code class="ds-code">.animate_trigger</code><br/>
+            Trigger: <code class="ds-code">.animate_in</code> (on scroll)<br/>
+            Transform: <code class="ds-code">translate3d(0, 1.5vw, 0) → none</code><br/>
+            Opacity: <code class="ds-code">0 → 1</code><br/>
+            Timing: <code class="ds-code">0.5s ease 0.1s</code>
+          </div>
+        </div>
+
+        <!-- Arrow animation -->
+        <div class="motion-card">
+          <div class="motion-card-title">Arrow Down Pulse</div>
+          <div class="motion-demo-area">
+            <span class="demo-arrow-animated">→</span>
+          </div>
+          <div class="motion-card-desc">
+            Keyframe: <code class="ds-code">@keyframes arrow-down</code><br/>
+            Duration: <code class="ds-code">1.5s infinite</code><br/>
+            Motion: translateX(0) ↔ translateX(0.5vw)<br/>
+            Used on: <code class="ds-code">.first-section .arrow-down</code>
+          </div>
+        </div>
+
+        <!-- Button hover -->
+        <div class="motion-card">
+          <div class="motion-card-title">Button Hover Transition</div>
+          <div class="motion-demo-area">
+            <div class="btn-circle font-25 uppercase" id="btn-hover-demo">Hover me</div>
+          </div>
+          <div class="motion-card-desc">
+            Class: <code class="ds-code">.btn-circle:hover</code><br/>
+            Duration: <code class="ds-code">0.3s ease-in-out</code><br/>
+            Change: border + background → red<br/>
+            Used on all pill buttons &amp; case-block boxes
+          </div>
+        </div>
+
+        <!-- Small text fade in -->
+        <div class="motion-card">
+          <div class="motion-card-title">Hero Small Text Reveal</div>
+          <div class="motion-demo-area">
+            <div class="small-text font-18 uppercase show" style="position:relative; top:auto; left:auto; opacity:1;">
+              Design System v2
+            </div>
+          </div>
+          <div class="motion-card-desc">
+            Class: <code class="ds-code">.small-text</code> → add <code class="ds-code">.show</code> after 1.5s<br/>
+            Opacity: <code class="ds-code">0 → 1</code><br/>
+            Timing: <code class="ds-code">0.7s cubic-bezier(0.8, 0, 0, 0.8)</code>
+          </div>
+        </div>
+
+        <!-- Big text slide -->
+        <div class="motion-card">
+          <div class="motion-card-title">Big Text Slide Transition</div>
+          <div class="motion-demo-area" style="overflow:hidden;">
+            <div class="big-text font-76 uppercase" style="transition:all 1.3s cubic-bezier(0.8, 0, 0, 0.8); letter-spacing:-0.03em;">
+              Clint Studio
+            </div>
+          </div>
+          <div class="motion-card-desc">
+            Class: <code class="ds-code">.big-text</code><br/>
+            Timing: <code class="ds-code">1.3s cubic-bezier(0.8, 0, 0, 0.8)</code><br/>
+            Letter-spacing: <code class="ds-code">-0.03em</code>
+          </div>
+        </div>
+
+        <!-- Marquee scroll -->
+        <div class="motion-card">
+          <div class="motion-card-title">Marquee Scroll Text</div>
+          <div class="motion-demo-area" style="overflow:hidden; width:100%;">
+            <div style="white-space:nowrap; animation:marqueeLeft 10s linear infinite; display:inline-flex; align-items:center; gap:1.5vw; font-size:2.1vw; font-family:'degular',sans-serif; font-style:italic; font-weight:700;">
+              <svg height="24" viewbox="0 0 62.577 63.474" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M60.782,34.6,43.638,31.574l17.144-3.023a2.173,2.173,0,0,0-.755-4.279L42.884,27.295l15.076-8.7a2.172,2.172,0,1,0-2.172-3.763l-15.075,8.7L51.9,10.2A2.172,2.172,0,0,0,48.573,7.4L37.383,20.74,43.337,4.382A2.172,2.172,0,0,0,39.254,2.9L33.3,19.254V2.172a2.172,2.172,0,0,0-4.345,0V19.253L23.113,3.2A2.172,2.172,0,0,0,19.03,4.688l5.842,16.051L13.893,7.654a2.173,2.173,0,0,0-3.328,2.793L21.544,23.532,6.752,14.992a2.172,2.172,0,0,0-2.172,3.763l14.793,8.54L2.55,24.329A2.172,2.172,0,0,0,1.8,28.608l16.822,2.966L1.8,34.54a2.172,2.172,0,1,0,.754,4.279l16.821-2.966L4.579,44.393a2.173,2.173,0,1,0,2.172,3.763l14.792-8.54L10.565,52.7a2.173,2.173,0,0,0,3.328,2.793L24.873,42.409,19.03,58.459a2.172,2.172,0,1,0,4.083,1.486l5.842-16.051V61.3a2.172,2.172,0,0,0,4.345,0V43.894l5.954,16.358a2.173,2.173,0,1,0,4.083-1.486L37.383,42.408l11.19,13.335A2.173,2.173,0,0,0,51.9,52.951L40.712,39.616l15.075,8.7a2.173,2.173,0,1,0,2.172-3.763l-15.075-8.7,17.143,3.023a2.172,2.172,0,1,0,.755-4.279" fill="#fff"/></svg>
+              <span>concept art</span>
+              <svg height="24" viewbox="0 0 62.577 63.474" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M60.782,34.6,43.638,31.574l17.144-3.023a2.173,2.173,0,0,0-.755-4.279L42.884,27.295l15.076-8.7a2.172,2.172,0,1,0-2.172-3.763l-15.075,8.7L51.9,10.2A2.172,2.172,0,0,0,48.573,7.4L37.383,20.74,43.337,4.382A2.172,2.172,0,0,0,39.254,2.9L33.3,19.254V2.172a2.172,2.172,0,0,0-4.345,0V19.253L23.113,3.2A2.172,2.172,0,0,0,19.03,4.688l5.842,16.051L13.893,7.654a2.173,2.173,0,0,0-3.328,2.793L21.544,23.532,6.752,14.992a2.172,2.172,0,0,0-2.172,3.763l14.793,8.54L2.55,24.329A2.172,2.172,0,0,0,1.8,28.608l16.822,2.966L1.8,34.54a2.172,2.172,0,1,0,.754,4.279l16.821-2.966L4.579,44.393a2.173,2.173,0,1,0,2.172,3.763l14.792-8.54L10.565,52.7a2.173,2.173,0,0,0,3.328,2.793L24.873,42.409,19.03,58.459a2.172,2.172,0,1,0,4.083,1.486l5.842-16.051V61.3a2.172,2.172,0,0,0,4.345,0V43.894l5.954,16.358a2.173,2.173,0,1,0,4.083-1.486L37.383,42.408l11.19,13.335A2.173,2.173,0,0,0,51.9,52.951L40.712,39.616l15.075,8.7a2.173,2.173,0,1,0,2.172-3.763l-15.075-8.7,17.143,3.023a2.172,2.172,0,1,0,.755-4.279" fill="#fff"/></svg>
+              <span>animation</span>
+              <svg height="24" viewbox="0 0 62.577 63.474" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M60.782,34.6,43.638,31.574l17.144-3.023a2.173,2.173,0,0,0-.755-4.279L42.884,27.295l15.076-8.7a2.172,2.172,0,1,0-2.172-3.763l-15.075,8.7L51.9,10.2A2.172,2.172,0,0,0,48.573,7.4L37.383,20.74,43.337,4.382A2.172,2.172,0,0,0,39.254,2.9L33.3,19.254V2.172a2.172,2.172,0,0,0-4.345,0V19.253L23.113,3.2A2.172,2.172,0,0,0,19.03,4.688l5.842,16.051L13.893,7.654a2.173,2.173,0,0,0-3.328,2.793L21.544,23.532,6.752,14.992a2.172,2.172,0,0,0-2.172,3.763l14.793,8.54L2.55,24.329A2.172,2.172,0,0,0,1.8,28.608l16.822,2.966L1.8,34.54a2.172,2.172,0,1,0,.754,4.279l16.821-2.966L4.579,44.393a2.173,2.173,0,1,0,2.172,3.763l14.792-8.54L10.565,52.7a2.173,2.173,0,0,0,3.328,2.793L24.873,42.409,19.03,58.459a2.172,2.172,0,1,0,4.083,1.486l5.842-16.051V61.3a2.172,2.172,0,0,0,4.345,0V43.894l5.954,16.358a2.173,2.173,0,1,0,4.083-1.486L37.383,42.408l11.19,13.335A2.173,2.173,0,0,0,51.9,52.951L40.712,39.616l15.075,8.7a2.173,2.173,0,1,0,2.172-3.763l-15.075-8.7,17.143,3.023a2.172,2.172,0,1,0,.755-4.279" fill="#fff"/></svg>
+              <span>storyboard</span>
+            </div>
+          </div>
+          <div class="motion-card-desc">
+            Class: <code class="ds-code">.marquee_text.first/.second</code><br/>
+            Library: jquery.marquee · direction left/right<br/>
+            Duration: 60000ms / 70000ms<br/>
+            Timing: random underline highlight every 5s
+          </div>
+        </div>
+
+        <!-- Mouse spotlight -->
+        <div class="motion-card">
+          <div class="motion-card-title">Mouse Spotlight (SVG Radial Mask)</div>
+          <div class="motion-demo-area" style="position:relative; overflow:hidden; border-radius:0.8vw; background:#111;">
+            <video autoplay loop muted playsinline class="video-on" style="width:100%; height:100%; object-fit:cover; position:relative; z-index:0; mask-size:14vw; -webkit-mask-size:14vw;">
+              <source src="assets/4de01ef81c2d20c9_Home_Lights_OFF.mp4" type="video/mp4"/>
+            </video>
+          </div>
+          <div class="motion-card-desc">
+            Class: <code class="ds-code">.video-on</code><br/>
+            SVG radial gradient mask, follow mouse<br/>
+            JS: <code class="ds-code">requestAnimationFrame</code> + lerp speed 0.08<br/>
+            CSS: <code class="ds-code">mask-image</code> + <code class="ds-code">mask-position</code>
+          </div>
+        </div>
+
+        <!-- Video hover scale -->
+        <div class="motion-card">
+          <div class="motion-card-title">Video Hover Scale</div>
+          <div class="motion-demo-area" style="overflow:hidden; border-radius:0.8vw;">
+            <video autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover; transition:all 0.5s ease-in-out; border-radius:0.8vw; display:block;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+              <source src="assets/3568b2d824a827e2_sensorama_header-op2.mp4" type="video/mp4"/>
+            </video>
+          </div>
+          <div class="motion-card-desc">
+            Selector: <code class="ds-code">.slide-item.current video:hover</code><br/>
+            Transform: <code class="ds-code">scale(1.1)</code><br/>
+            Timing: <code class="ds-code">0.5s ease-in-out</code>
+          </div>
+        </div>
+
+        <!-- Header slide in -->
+        <div class="motion-card">
+          <div class="motion-card-title">Header Fixed Slide-In</div>
+          <div class="motion-demo-area" style="position:relative; height:4vw; overflow:hidden; border:1px solid rgba(255,255,255,0.1); border-radius:0.4vw;">
+            <div style="position:absolute; right:2vw; top:1vw; font-family:'degular',sans-serif; font-size:0.72vw; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--white);">ABOUT · WORK · LAB</div>
+          </div>
+          <div class="motion-card-desc">
+            Class: <code class="ds-code">header.fixed</code> → add <code class="ds-code">.active</code> on scroll ≥ 50vh<br/>
+            Logo slides from left: <code class="ds-code">left:-10vw → 3.1vw</code><br/>
+            Menu slides from right: <code class="ds-code">right:-10vw → 2.8vw</code><br/>
+            Timing: <code class="ds-code">0.3s ease-in-out</code>
+          </div>
+        </div>
+
+        <!-- Case block expand -->
+        <div class="motion-card">
+          <div class="motion-card-title">Case Block Expand</div>
+          <div class="motion-demo-area">
+            <div style="font-family:'degular',sans-serif; font-size:0.72vw; color:rgba(255,255,255,0.5); text-align:center;">
+              height: 9.1vw → 40.1vw<br/>title: 5.2vw → 10.4vw + center
+            </div>
+          </div>
+          <div class="motion-card-desc">
+            Class: <code class="ds-code">.case-block</code> → add <code class="ds-code">.active</code><br/>
+            Height: <code class="ds-code">9.1vw → 40.1vw</code><br/>
+            Title: repositions to center at larger size<br/>
+            Timing: <code class="ds-code">0.3s ease-in-out</code> (all)
+          </div>
+        </div>
+      </div>
+
+      <!-- Global easing reference -->
+      <div class="ds-sub-title" style="margin-top:3vw;">Global Timing &amp; Easing Reference</div>
+      <table class="tech-table">
+        <thead><tr><th>Animation</th><th>Duration</th><th>Easing</th></tr></thead>
+        <tbody>
+          <tr><td>.animate_trigger entrance</td><td>0.5s delay 0.1s</td><td>ease</td></tr>
+          <tr><td>Big text slide</td><td>1.3s</td><td>cubic-bezier(0.8, 0, 0, 0.8)</td></tr>
+          <tr><td>Small text reveal</td><td>0.7s</td><td>cubic-bezier(0.8, 0, 0, 0.8)</td></tr>
+          <tr><td>Header fixed slide</td><td>0.3s</td><td>ease-in-out</td></tr>
+          <tr><td>Button hover</td><td>0.3s</td><td>ease-in-out</td></tr>
+          <tr><td>Video opacity reveal</td><td>0.8s</td><td>ease-in-out</td></tr>
+          <tr><td>Slider transition</td><td>0.7s</td><td>ease-in-out</td></tr>
+          <tr><td>Slide text opacity</td><td>0.4s</td><td>ease-in-out</td></tr>
+          <tr><td>Arrow down keyframe</td><td>1.5s infinite</td><td>implicit ease</td></tr>
+          <tr><td>Mouse mask lerp</td><td>speed: 0.08</td><td>requestAnimationFrame</td></tr>
+          <tr><td>Footer infos toggle</td><td>0.5s</td><td>ease-in-out</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 6 · ICONS
+    ══════════════════════════════════════════════════════ -->
+    <div class="ds-section" id="section-icons">
+      <div class="ds-section-title">06 — Icons</div>
+
+      <p class="font-25" style="color:rgba(255,255,255,0.4); margin-bottom:2vw;">All icons in the reference are custom inline SVG paths. No external icon library is used. Icons are white-filled and size is controlled via width/height on the <code class="ds-code">&lt;svg&gt;</code> element.</p>
+
+      <div class="ds-sub-title">Burst / Asterisk Icon (Marquee separator)</div>
+      <div class="icon-grid">
+        <div class="icon-item">
+          <svg height="32" viewbox="0 0 62.577 63.474" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M60.782,34.6,43.638,31.574l17.144-3.023a2.173,2.173,0,0,0-.755-4.279L42.884,27.295l15.076-8.7a2.172,2.172,0,1,0-2.172-3.763l-15.075,8.7L51.9,10.2A2.172,2.172,0,0,0,48.573,7.4L37.383,20.74,43.337,4.382A2.172,2.172,0,0,0,39.254,2.9L33.3,19.254V2.172a2.172,2.172,0,0,0-4.345,0V19.253L23.113,3.2A2.172,2.172,0,0,0,19.03,4.688l5.842,16.051L13.893,7.654a2.173,2.173,0,0,0-3.328,2.793L21.544,23.532,6.752,14.992a2.172,2.172,0,0,0-2.172,3.763l14.793,8.54L2.55,24.329A2.172,2.172,0,0,0,1.8,28.608l16.822,2.966L1.8,34.54a2.172,2.172,0,1,0,.754,4.279l16.821-2.966L4.579,44.393a2.173,2.173,0,1,0,2.172,3.763l14.792-8.54L10.565,52.7a2.173,2.173,0,0,0,3.328,2.793L24.873,42.409,19.03,58.459a2.172,2.172,0,1,0,4.083,1.486l5.842-16.051V61.3a2.172,2.172,0,0,0,4.345,0V43.894l5.954,16.358a2.173,2.173,0,1,0,4.083-1.486L37.383,42.408l11.19,13.335A2.173,2.173,0,0,0,51.9,52.951L40.712,39.616l15.075,8.7a2.173,2.173,0,1,0,2.172-3.763l-15.075-8.7,17.143,3.023a2.172,2.172,0,1,0,.755-4.279" fill="#fff"/></svg>
+          <span class="comp-state-label">32×32</span>
+        </div>
+        <div class="icon-item">
+          <svg height="48" viewbox="0 0 62.577 63.474" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M60.782,34.6,43.638,31.574l17.144-3.023a2.173,2.173,0,0,0-.755-4.279L42.884,27.295l15.076-8.7a2.172,2.172,0,1,0-2.172-3.763l-15.075,8.7L51.9,10.2A2.172,2.172,0,0,0,48.573,7.4L37.383,20.74,43.337,4.382A2.172,2.172,0,0,0,39.254,2.9L33.3,19.254V2.172a2.172,2.172,0,0,0-4.345,0V19.253L23.113,3.2A2.172,2.172,0,0,0,19.03,4.688l5.842,16.051L13.893,7.654a2.173,2.173,0,0,0-3.328,2.793L21.544,23.532,6.752,14.992a2.172,2.172,0,0,0-2.172,3.763l14.793,8.54L2.55,24.329A2.172,2.172,0,0,0,1.8,28.608l16.822,2.966L1.8,34.54a2.172,2.172,0,1,0,.754,4.279l16.821-2.966L4.579,44.393a2.173,2.173,0,1,0,2.172,3.763l14.792-8.54L10.565,52.7a2.173,2.173,0,0,0,3.328,2.793L24.873,42.409,19.03,58.459a2.172,2.172,0,1,0,4.083,1.486l5.842-16.051V61.3a2.172,2.172,0,0,0,4.345,0V43.894l5.954,16.358a2.173,2.173,0,1,0,4.083-1.486L37.383,42.408l11.19,13.335A2.173,2.173,0,0,0,51.9,52.951L40.712,39.616l15.075,8.7a2.173,2.173,0,1,0,2.172-3.763l-15.075-8.7,17.143,3.023a2.172,2.172,0,1,0,.755-4.279" fill="#fff"/></svg>
+          <span class="comp-state-label">48×48</span>
+        </div>
+        <div class="icon-item">
+          <!-- Original size from marquee_text: 3.4vw × 3.4vw -->
+          <svg style="width:3.4vw; height:3.4vw;" viewbox="0 0 62.577 63.474" xmlns="http://www.w3.org/2000/svg"><path d="M60.782,34.6,43.638,31.574l17.144-3.023a2.173,2.173,0,0,0-.755-4.279L42.884,27.295l15.076-8.7a2.172,2.172,0,1,0-2.172-3.763l-15.075,8.7L51.9,10.2A2.172,2.172,0,0,0,48.573,7.4L37.383,20.74,43.337,4.382A2.172,2.172,0,0,0,39.254,2.9L33.3,19.254V2.172a2.172,2.172,0,0,0-4.345,0V19.253L23.113,3.2A2.172,2.172,0,0,0,19.03,4.688l5.842,16.051L13.893,7.654a2.173,2.173,0,0,0-3.328,2.793L21.544,23.532,6.752,14.992a2.172,2.172,0,0,0-2.172,3.763l14.793,8.54L2.55,24.329A2.172,2.172,0,0,0,1.8,28.608l16.822,2.966L1.8,34.54a2.172,2.172,0,1,0,.754,4.279l16.821-2.966L4.579,44.393a2.173,2.173,0,1,0,2.172,3.763l14.792-8.54L10.565,52.7a2.173,2.173,0,0,0,3.328,2.793L24.873,42.409,19.03,58.459a2.172,2.172,0,1,0,4.083,1.486l5.842-16.051V61.3a2.172,2.172,0,0,0,4.345,0V43.894l5.954,16.358a2.173,2.173,0,1,0,4.083-1.486L37.383,42.408l11.19,13.335A2.173,2.173,0,0,0,51.9,52.951L40.712,39.616l15.075,8.7a2.173,2.173,0,1,0,2.172-3.763l-15.075-8.7,17.143,3.023a2.172,2.172,0,1,0,.755-4.279" fill="#fff"/></svg>
+          <span class="comp-state-label">3.4vw (original)</span>
+        </div>
+        <div class="icon-item">
+          <svg style="width:3.4vw; height:3.4vw;" viewbox="0 0 62.577 63.474" xmlns="http://www.w3.org/2000/svg"><path d="M60.782,34.6,43.638,31.574l17.144-3.023a2.173,2.173,0,0,0-.755-4.279L42.884,27.295l15.076-8.7a2.172,2.172,0,1,0-2.172-3.763l-15.075,8.7L51.9,10.2A2.172,2.172,0,0,0,48.573,7.4L37.383,20.74,43.337,4.382A2.172,2.172,0,0,0,39.254,2.9L33.3,19.254V2.172a2.172,2.172,0,0,0-4.345,0V19.253L23.113,3.2A2.172,2.172,0,0,0,19.03,4.688l5.842,16.051L13.893,7.654a2.173,2.173,0,0,0-3.328,2.793L21.544,23.532,6.752,14.992a2.172,2.172,0,0,0-2.172,3.763l14.793,8.54L2.55,24.329A2.172,2.172,0,0,0,1.8,28.608l16.822,2.966L1.8,34.54a2.172,2.172,0,1,0,.754,4.279l16.821-2.966L4.579,44.393a2.173,2.173,0,1,0,2.172,3.763l14.792-8.54L10.565,52.7a2.173,2.173,0,0,0,3.328,2.793L24.873,42.409,19.03,58.459a2.172,2.172,0,1,0,4.083,1.486l5.842-16.051V61.3a2.172,2.172,0,0,0,4.345,0V43.894l5.954,16.358a2.173,2.173,0,1,0,4.083-1.486L37.383,42.408l11.19,13.335A2.173,2.173,0,0,0,51.9,52.951L40.712,39.616l15.075,8.7a2.173,2.173,0,1,0,2.172-3.763l-15.075-8.7,17.143,3.023a2.172,2.172,0,1,0,.755-4.279" fill="#ff0000"/></svg>
+          <span class="comp-state-label">3.4vw (red tint)</span>
+        </div>
+      </div>
+
+      <div class="ds-sub-title" style="margin-top:2.6vw;">Clint Logo (SVG inline)</div>
+      <div class="icon-grid">
+        <div class="icon-item">
+          <div style="width:4.2vw;">
+            <svg fill="none" height="100%" viewbox="0 0 41 42" width="100%" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.5 41.5C9.178 41.5 0 32.322 0 21S9.178.5 20.5.5 41 9.678 41 21s-9.178 20.5-20.5 20.5z" fill="#fff"/>
+              <path d="M20.5 34.217c-7.29 0-13.217-5.927-13.217-13.217S13.21 7.783 20.5 7.783 33.717 13.71 33.717 21 27.79 34.217 20.5 34.217z" fill="#000"/>
+              <circle cx="20.5" cy="21" fill="#fff" r="6.433"/>
+            </svg>
+          </div>
+          <span class="comp-state-label">.logo (4.2vw) · white on dark</span>
+        </div>
+        <div class="icon-item">
+          <div style="width:4.2vw; background:var(--white); padding:0.3vw; border-radius:0.3vw;">
+            <svg fill="none" height="100%" viewbox="0 0 41 42" width="100%" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.5 41.5C9.178 41.5 0 32.322 0 21S9.178.5 20.5.5 41 9.678 41 21s-9.178 20.5-20.5 20.5z" fill="#000"/>
+              <path d="M20.5 34.217c-7.29 0-13.217-5.927-13.217-13.217S13.21 7.783 20.5 7.783 33.717 13.71 33.717 21 27.79 34.217 20.5 34.217z" fill="#fff"/>
+              <circle cx="20.5" cy="21" fill="#000" r="6.433"/>
+            </svg>
+          </div>
+          <span class="comp-state-label">.logo · black on white (about page)</span>
+        </div>
+        <div class="icon-item">
+          <div style="width:2.15vw;">
+            <svg fill="none" height="100%" viewbox="0 0 41 42" width="100%" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.5 41.5C9.178 41.5 0 32.322 0 21S9.178.5 20.5.5 41 9.678 41 21s-9.178 20.5-20.5 20.5z" fill="#fff"/>
+              <path d="M20.5 34.217c-7.29 0-13.217-5.927-13.217-13.217S13.21 7.783 20.5 7.783 33.717 13.71 33.717 21 27.79 34.217 20.5 34.217z" fill="#000"/>
+              <circle cx="20.5" cy="21" fill="#fff" r="6.433"/>
+            </svg>
+          </div>
+          <span class="comp-state-label">header.fixed.active (2.15vw)</span>
+        </div>
+      </div>
+
+      <div class="ds-sub-title" style="margin-top:2.6vw;">SVG Menu Text Files (from assets)</div>
+      <div class="icon-grid" style="gap:2vw; flex-wrap:wrap;">
+        <div class="icon-item">
+          <img src="assets/387f7c84d27d6d51_menutext-home.svg" style="height:2vw; width:auto; display:block;" alt="home menu text" />
+          <span class="comp-state-label">menutext-home.svg</span>
+        </div>
+        <div class="icon-item">
+          <img src="assets/ad35dbd1bdf7d091_menutext-about.svg" style="height:2vw; width:auto; display:block;" alt="about menu text" />
+          <span class="comp-state-label">menutext-about.svg</span>
+        </div>
+        <div class="icon-item">
+          <img src="assets/2771fb95f60639bf_menutext-work.svg" style="height:2vw; width:auto; display:block;" alt="work menu text" />
+          <span class="comp-state-label">menutext-work.svg</span>
+        </div>
+        <div class="icon-item">
+          <img src="assets/0b4206550df9b6d9_menutext-lab.svg" style="height:2vw; width:auto; display:block;" alt="lab menu text" />
+          <span class="comp-state-label">menutext-lab.svg</span>
+        </div>
+        <div class="icon-item">
+          <img src="assets/e96b683b1835727a_arrow-next.svg" style="height:2vw; width:auto; display:block;" alt="arrow next" />
+          <span class="comp-state-label">arrow-next.svg (cursor)</span>
+        </div>
+        <div class="icon-item">
+          <img src="assets/0f08e397fe73913c_arrow-next-2x.svg" style="height:2vw; width:auto; display:block;" alt="arrow next 2x" />
+          <span class="comp-state-label">arrow-next-2x.svg (cursor)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 7 · TECHNOLOGIES & LIBRARIES
+    ══════════════════════════════════════════════════════ -->
+    <div class="ds-section" id="section-tech">
+      <div class="ds-section-title">07 — Technologies &amp; Libraries Used</div>
+
+      <table class="tech-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Source</th>
+            <th>Purpose</th>
+            <th>Depends On</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Fonts -->
+          <tr>
+            <td>Degular <span class="tech-tag">Font</span></td>
+            <td>Adobe Fonts CDN (<code class="ds-code">use.typekit.net/rbs3wgu.css</code>)</td>
+            <td>Primary body & display typeface. Used for all UI text, headings, labels, and utility classes via <code class="ds-code">font-family: "degular"</code>.</td>
+            <td>All text</td>
+          </tr>
+          <tr>
+            <td>Editorial New <span class="tech-tag">Font</span></td>
+            <td>Local <code class="ds-code">@font-face</code> — woff2/woff from <code class="ds-code">./fonts/EditorialNew-Regular.*</code></td>
+            <td>Secondary serif typeface. Applied via <code class="ds-code">.second-font</code> class. Used for editorial/accent text.</td>
+            <td>.second-font</td>
+          </tr>
+
+          <!-- CSS Frameworks -->
+          <tr>
+            <td>Bootstrap 3 <span class="tech-tag">CSS</span></td>
+            <td><code class="ds-code">assets/6d92dfc1700fd38c_bootstrap.min.css</code></td>
+            <td>Base grid reset and utility classes. Loaded as a foundational layer under the custom theme CSS.</td>
+            <td>Base layer</td>
+          </tr>
+          <tr>
+            <td>Bootstrap Theme <span class="tech-tag">CSS</span></td>
+            <td><code class="ds-code">assets/f2e1cc227d6bbb41_bootstrap-theme.min.css</code></td>
+            <td>Bootstrap 3 optional theme styles (buttons, panels, etc.).</td>
+            <td>Bootstrap</td>
+          </tr>
+          <tr>
+            <td>Hamburgers.css <span class="tech-tag">CSS</span></td>
+            <td><code class="ds-code">assets/24fbf98a0312aa6d_hamburgers.min.css</code></td>
+            <td>Animated hamburger menu icon CSS. Used for the mobile navigation toggle (<code class="ds-code">.menu-icon</code>).</td>
+            <td>.menu-icon</td>
+          </tr>
+          <tr>
+            <td>Slick CSS <span class="tech-tag">CSS</span></td>
+            <td><code class="ds-code">assets/de1e399b07289f3b_slick.css</code></td>
+            <td>Base styles for the Slick carousel. Used on mobile team block and feature items.</td>
+            <td>.feature-items, .team-block-mobile</td>
+          </tr>
+          <tr>
+            <td>Theme Style <span class="tech-tag">CSS · Main</span></td>
+            <td><code class="ds-code">assets/e9417875b1420aaf_style.css</code></td>
+            <td>Primary custom stylesheet. Defines all design tokens (CSS variables), typography scale, layout grid, component styles, animations, and responsive rules. 3 086 lines. This is the source of truth for the design system.</td>
+            <td>Everything</td>
+          </tr>
+          <tr>
+            <td>Contact Form 7 CSS <span class="tech-tag">CSS</span></td>
+            <td><code class="ds-code">assets/029dedf319bc4536_front.min.css</code></td>
+            <td>Minimal CF7 form styles (used by WordPress Contact Form 7 plugin).</td>
+            <td>.wpcf7 forms</td>
+          </tr>
+          <tr>
+            <td>Cookie Notice CSS <span class="tech-tag">CSS</span></td>
+            <td><code class="ds-code">assets/76babfe96eed5898_gpe4ots.css</code></td>
+            <td>Styles for the cookie consent banner (<code class="ds-code">#cookie-notice</code>).</td>
+            <td>#cookie-notice</td>
+          </tr>
+
+          <!-- JavaScript -->
+          <tr>
+            <td>jQuery 3.6.0 <span class="tech-tag">JS</span></td>
+            <td><code class="ds-code">assets/ff1523fb7389539c_jquery-3.6.0.min.js</code></td>
+            <td>DOM manipulation and event handling backbone. Required by all other jQuery plugins (Slick, Marquee, custom.js).</td>
+            <td>Everything JS</td>
+          </tr>
+          <tr>
+            <td>Slick.js <span class="tech-tag">JS</span></td>
+            <td><code class="ds-code">assets/0c7178cc6ca34fb1_slick.min.js</code></td>
+            <td>Carousel/slider library. Used on mobile for <code class="ds-code">.feature-items</code> and <code class="ds-code">.team-block-mobile</code> with autoplay, fade, and swipe.</td>
+            <td>jQuery · mobile sliders</td>
+          </tr>
+          <tr>
+            <td>jQuery Marquee <span class="tech-tag">JS</span></td>
+            <td><code class="ds-code">assets/23b9b39ea6130805_jquery.marquee.min.js</code></td>
+            <td>Continuous scrolling text. Applied to <code class="ds-code">.marquee_text.first</code> (left, 60s), <code class="ds-code">.marquee_text.second</code> (right, 70s), and header info marquee.</td>
+            <td>jQuery · .marquee_text, .marquee-header-info</td>
+          </tr>
+          <tr>
+            <td>TweenMax (GSAP 2) <span class="tech-tag">JS · Animation</span></td>
+            <td><code class="ds-code">assets/a863a77e9ee263a0_TweenMax.min.js</code></td>
+            <td>GSAP animation engine. Used for high-performance scroll-driven animations and complex transitions. 115 KB.</td>
+            <td>Scroll-based animations</td>
+          </tr>
+          <tr>
+            <td>Lottie Player <span class="tech-tag">JS · Animation</span></td>
+            <td><code class="ds-code">assets/b396c6847f916f93_lottie-player.js</code> (from <code class="ds-code">unpkg.com/@lottiefiles/lottie-player</code>)</td>
+            <td>Web component (<code class="ds-code">&lt;lottie-player&gt;</code>) for rendering Lottie JSON animations inline. Used inside <code class="ds-code">.slider-home</code> slide titles and the hero section.</td>
+            <td>.slide-title lottie-player, #video-lottie-desktop/mobile</td>
+          </tr>
+          <tr>
+            <td>Lottie Interactivity <span class="tech-tag">JS · Animation</span></td>
+            <td><code class="ds-code">assets/6d4cb67a77ccaac1_lottie-interactivity.min.js</code> (from <code class="ds-code">unpkg.com/@lottiefiles/lottie-interactivity</code>)</td>
+            <td>Scroll-triggered Lottie playback. Used on the hero Lottie player (<code class="ds-code">LottieInteractivity.create</code>, mode: scroll, playOnce at 0–50% visibility).</td>
+            <td>Lottie Player · hero lottie</td>
+          </tr>
+          <tr>
+            <td>Custom JS <span class="tech-tag">JS · Site Logic</span></td>
+            <td><code class="ds-code">assets/938a05be1df11f95_custom.js</code></td>
+            <td>All site-specific interactivity: slider navigation, case-block expand/collapse, header scroll behavior, mouse spotlight mask, marquee init, case-block video hover, footer country toggle, form handling, viewport video play/pause. 848 lines.</td>
+            <td>jQuery · All components</td>
+          </tr>
+          <tr>
+            <td>Contact Form 7 JS <span class="tech-tag">JS · WordPress</span></td>
+            <td><code class="ds-code">assets/ddcce687729cb358_index.js</code></td>
+            <td>WordPress Contact Form 7 plugin frontend handler (AJAX form submit, validation, response display).</td>
+            <td>.wpcf7 forms</td>
+          </tr>
+          <tr>
+            <td>SWV (Schema Validation) <span class="tech-tag">JS · WordPress</span></td>
+            <td><code class="ds-code">assets/6d60e3b25e56d351_index.js</code></td>
+            <td>WordPress Simple Validation Library used by CF7 for field validation rules.</td>
+            <td>CF7</td>
+          </tr>
+          <tr>
+            <td>wp-hooks <span class="tech-tag">JS · WordPress</span></td>
+            <td><code class="ds-code">assets/1d231f080d1df633_hooks.min.js</code></td>
+            <td>WordPress hooks API ported to JS (filters & actions). Required by wp-i18n and other WP scripts.</td>
+            <td>wp-i18n, CF7</td>
+          </tr>
+          <tr>
+            <td>wp-i18n <span class="tech-tag">JS · WordPress</span></td>
+            <td><code class="ds-code">assets/46668f561bd01aaa_i18n.min.js</code></td>
+            <td>WordPress internationalization module. Sets locale data (ltr text direction). Required by CF7.</td>
+            <td>CF7</td>
+          </tr>
+
+          <!-- Media & CDN -->
+          <tr>
+            <td>MP4 Videos <span class="tech-tag">Media</span></td>
+            <td><code class="ds-code">assets/*.mp4</code> (originally from <code class="ds-code">clint.work/wp-content/uploads/</code>)</td>
+            <td>Hero background (<code class="ds-code">Home_Lights_OFF.mp4</code>, <code class="ds-code">Home_Lights_On.mp4</code>), site reel, slider case videos, work section videos. All muted, looped, autoplay.</td>
+            <td>first-section, second-section, slider, work-section</td>
+          </tr>
+          <tr>
+            <td>GIF Previews <span class="tech-tag">Media</span></td>
+            <td><code class="ds-code">assets/*.gif</code></td>
+            <td>Case block background-images (fallback/preview). Used as <code class="ds-code">background-image</code> on <code class="ds-code">.case-block</code> and as <code class="ds-code">&lt;img&gt;</code> for mobile gif-preview divs.</td>
+            <td>.case-block, .gif-preview (mobile)</td>
+          </tr>
+          <tr>
+            <td>Lottie JSON Files <span class="tech-tag">Media</span></td>
+            <td><code class="ds-code">assets/*.json</code> (e.g. design-animation.json, Motion-as-the-foundation.json)</td>
+            <td>Animation data files consumed by <code class="ds-code">&lt;lottie-player src="..."&gt;</code>. Used inside slider slide titles.</td>
+            <td>lottie-player</td>
+          </tr>
+          <tr>
+            <td>SVG Icons &amp; Menu Text <span class="tech-tag">Media</span></td>
+            <td><code class="ds-code">assets/*.svg</code></td>
+            <td>Custom-drawn SVG files: clint logo (inline), burst/asterisk icon (inline), menu text labels (as &lt;img&gt; in big-menu), arrow cursors.</td>
+            <td>header, marquee_text, big-menu, slider</td>
+          </tr>
+          <tr>
+            <td>WordPress Emoji (Twemoji) <span class="tech-tag">JS · WP</span></td>
+            <td><code class="ds-code">https://s.w.org/images/core/emoji/</code></td>
+            <td>Loaded conditionally via <code class="ds-code">wp-emoji-loader</code> only if browser does not natively support all emoji. Does not affect visual design.</td>
+            <td>n/a</td>
+          </tr>
+          <tr>
+            <td>Speculation Rules API <span class="tech-tag">Perf</span></td>
+            <td>Inline <code class="ds-code">&lt;script type="speculationrules"&gt;</code></td>
+            <td>Prefetches internal links conservatively for faster page transitions. WordPress performance optimization.</td>
+            <td>n/a</td>
+          </tr>
+          <tr>
+            <td>Breeze Prefetch <span class="tech-tag">Perf · WP</span></td>
+            <td><code class="ds-code">assets/45a11e634afc2de1_breeze-prefetch-links.min.js</code></td>
+            <td>Cloudways Breeze cache plugin script for prefetching links on hover. Performance enhancement only.</td>
+            <td>n/a</td>
+          </tr>
+          <tr>
+            <td>Cookie Notice Plugin <span class="tech-tag">WordPress</span></td>
+            <td>Inline CSS (<code class="ds-code">rgba(0,0,0,1)</code> bg, red accept btn)</td>
+            <td>GDPR/cookie consent banner rendered by the Hu-manity.co Cookie Notice plugin v2.5.5. Styled via inline styles in HTML.</td>
+            <td>#cookie-notice</td>
+          </tr>
+          <tr>
+            <td>Offline ESM Fix <span class="tech-tag">Tooling</span></td>
+            <td>Inline <code class="ds-code">&lt;script data-offline-esm&gt;</code> and <code class="ds-code">&lt;script data-offline-fix&gt;</code></td>
+            <td>Injected by the offline capture tool. Adds a base href, swallows pushState errors on file:// protocol, provides progressive scroll-reveal for hidden GSAP elements, and calls UnicornStudio.init(). Not part of the live site's codebase.</td>
+            <td>Capture artifact only</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer (exact original markup) -->
+    <footer style="padding-bottom:0;">
+      <div class="marquee_text first font-150 italic relative" style="overflow:hidden; white-space:nowrap; padding:2vw 0;">
+        <div style="display:inline-flex; align-items:center; gap:2vw; animation:marqueeLeft 25s linear infinite;">
+          <svg height="63.474" viewbox="0 0 62.577 63.474" width="62.577" xmlns="http://www.w3.org/2000/svg"><path d="M60.782,34.6,43.638,31.574l17.144-3.023a2.173,2.173,0,0,0-.755-4.279L42.884,27.295l15.076-8.7a2.172,2.172,0,1,0-2.172-3.763l-15.075,8.7L51.9,10.2A2.172,2.172,0,0,0,48.573,7.4L37.383,20.74,43.337,4.382A2.172,2.172,0,0,0,39.254,2.9L33.3,19.254V2.172a2.172,2.172,0,0,0-4.345,0V19.253L23.113,3.2A2.172,2.172,0,0,0,19.03,4.688l5.842,16.051L13.893,7.654a2.173,2.173,0,0,0-3.328,2.793L21.544,23.532,6.752,14.992a2.172,2.172,0,0,0-2.172,3.763l14.793,8.54L2.55,24.329A2.172,2.172,0,0,0,1.8,28.608l16.822,2.966L1.8,34.54a2.172,2.172,0,1,0,.754,4.279l16.821-2.966L4.579,44.393a2.173,2.173,0,1,0,2.172,3.763l14.792-8.54L10.565,52.7a2.173,2.173,0,0,0,3.328,2.793L24.873,42.409,19.03,58.459a2.172,2.172,0,1,0,4.083,1.486l5.842-16.051V61.3a2.172,2.172,0,0,0,4.345,0V43.894l5.954,16.358a2.173,2.173,0,1,0,4.083-1.486L37.383,42.408l11.19,13.335A2.173,2.173,0,0,0,51.9,52.951L40.712,39.616l15.075,8.7a2.173,2.173,0,1,0,2.172-3.763l-15.075-8.7,17.143,3.023a2.172,2.172,0,1,0,.755-4.279" fill="#fff"/></svg>
+          <div class="text">concept art</div>
+          <svg height="63.474" viewbox="0 0 62.577 63.474" width="62.577" xmlns="http://www.w3.org/2000/svg"><path d="M60.782,34.6,43.638,31.574l17.144-3.023a2.173,2.173,0,0,0-.755-4.279L42.884,27.295l15.076-8.7a2.172,2.172,0,1,0-2.172-3.763l-15.075,8.7L51.9,10.2A2.172,2.172,0,0,0,48.573,7.4L37.383,20.74,43.337,4.382A2.172,2.172,0,0,0,39.254,2.9L33.3,19.254V2.172a2.172,2.172,0,0,0-4.345,0V19.253L23.113,3.2A2.172,2.172,0,0,0,19.03,4.688l5.842,16.051L13.893,7.654a2.173,2.173,0,0,0-3.328,2.793L21.544,23.532,6.752,14.992a2.172,2.172,0,0,0-2.172,3.763l14.793,8.54L2.55,24.329A2.172,2.172,0,0,0,1.8,28.608l16.822,2.966L1.8,34.54a2.172,2.172,0,1,0,.754,4.279l16.821-2.966L4.579,44.393a2.173,2.173,0,1,0,2.172,3.763l14.792-8.54L10.565,52.7a2.173,2.173,0,0,0,3.328,2.793L24.873,42.409,19.03,58.459a2.172,2.172,0,1,0,4.083,1.486l5.842-16.051V61.3a2.172,2.172,0,0,0,4.345,0V43.894l5.954,16.358a2.173,2.173,0,1,0,4.083-1.486L37.383,42.408l11.19,13.335A2.173,2.173,0,0,0,51.9,52.951L40.712,39.616l15.075,8.7a2.173,2.173,0,1,0,2.172-3.763l-15.075-8.7,17.143,3.023a2.172,2.172,0,1,0,.755-4.279" fill="#fff"/></svg>
+          <div class="text">animation</div>
+          <svg height="63.474" viewbox="0 0 62.577 63.474" width="62.577" xmlns="http://www.w3.org/2000/svg"><path d="M60.782,34.6,43.638,31.574l17.144-3.023a2.173,2.173,0,0,0-.755-4.279L42.884,27.295l15.076-8.7a2.172,2.172,0,1,0-2.172-3.763l-15.075,8.7L51.9,10.2A2.172,2.172,0,0,0,48.573,7.4L37.383,20.74,43.337,4.382A2.172,2.172,0,0,0,39.254,2.9L33.3,19.254V2.172a2.172,2.172,0,0,0-4.345,0V19.253L23.113,3.2A2.172,2.172,0,0,0,19.03,4.688l5.842,16.051L13.893,7.654a2.173,2.173,0,0,0-3.328,2.793L21.544,23.532,6.752,14.992a2.172,2.172,0,0,0-2.172,3.763l14.793,8.54L2.55,24.329A2.172,2.172,0,0,0,1.8,28.608l16.822,2.966L1.8,34.54a2.172,2.172,0,1,0,.754,4.279l16.821-2.966L4.579,44.393a2.173,2.173,0,1,0,2.172,3.763l14.792-8.54L10.565,52.7a2.173,2.173,0,0,0,3.328,2.793L24.873,42.409,19.03,58.459a2.172,2.172,0,1,0,4.083,1.486l5.842-16.051V61.3a2.172,2.172,0,0,0,4.345,0V43.894l5.954,16.358a2.173,2.173,0,1,0,4.083-1.486L37.383,42.408l11.19,13.335A2.173,2.173,0,0,0,51.9,52.951L40.712,39.616l15.075,8.7a2.173,2.173,0,1,0,2.172-3.763l-15.075-8.7,17.143,3.023a2.172,2.172,0,1,0,.755-4.279" fill="#fff"/></svg>
+          <div class="text">storyboard</div>
+          <svg height="63.474" viewbox="0 0 62.577 63.474" width="62.577" xmlns="http://www.w3.org/2000/svg"><path d="M60.782,34.6,43.638,31.574l17.144-3.023a2.173,2.173,0,0,0-.755-4.279L42.884,27.295l15.076-8.7a2.172,2.172,0,1,0-2.172-3.763l-15.075,8.7L51.9,10.2A2.172,2.172,0,0,0,48.573,7.4L37.383,20.74,43.337,4.382A2.172,2.172,0,0,0,39.254,2.9L33.3,19.254V2.172a2.172,2.172,0,0,0-4.345,0V19.253L23.113,3.2A2.172,2.172,0,0,0,19.03,4.688l5.842,16.051L13.893,7.654a2.173,2.173,0,0,0-3.328,2.793L21.544,23.532,6.752,14.992a2.172,2.172,0,0,0-2.172,3.763l14.793,8.54L2.55,24.329A2.172,2.172,0,0,0,1.8,28.608l16.822,2.966L1.8,34.54a2.172,2.172,0,1,0,.754,4.279l16.821-2.966L4.579,44.393a2.173,2.173,0,1,0,2.172,3.763l14.792-8.54L10.565,52.7a2.173,2.173,0,0,0,3.328,2.793L24.873,42.409,19.03,58.459a2.172,2.172,0,1,0,4.083,1.486l5.842-16.051V61.3a2.172,2.172,0,0,0,4.345,0V43.894l5.954,16.358a2.173,2.173,0,1,0,4.083-1.486L37.383,42.408l11.19,13.335A2.173,2.173,0,0,0,51.9,52.951L40.712,39.616l15.075,8.7a2.173,2.173,0,1,0,2.172-3.763l-15.075-8.7,17.143,3.023a2.172,2.172,0,1,0,.755-4.279" fill="#fff"/></svg>
+          <div class="text">character design</div>
+        </div>
+      </div>
+
+      <div class="footer-white flex flex-justify flex-center">
+        <div>
+          <div class="countries flex flex-center">
+            <div class="brazil country-info font-100 active">Work</div>
+            <div class="arrow font-70">→</div>
+            <div class="berlin country-info font-100">Careers</div>
+          </div>
+          <div class="infos brazil active">
+            <div class="utc uppercase font-30 font-bold">Design System — clint.work</div>
+            <a class="email font-50" href="mailto:hello@clint.work">hello@clint.work</a>
+            <div class="phone font-30"></div>
+          </div>
+          <div class="infos berlin">
+            <div class="utc uppercase font-30 font-bold">We're always looking for artists to join the team</div>
+            <a class="email font-50" href="mailto:jobs@clint.work">jobs@clint.work</a>
+          </div>
+        </div>
+        <div class="social-links flex">
+          <div class="flex flex-column uppercase">
+            <a href="https://www.instagram.com/clint.studio/" target="_blank">instagram</a>
+            <a href="https://www.behance.net/clint_studio" target="_blank">behance</a>
+            <a href="https://vimeo.com/clintstudio" target="_blank">vimeo</a>
+          </div>
+          <div class="footer-menu font-40">
+            <div class="menu-static-menu-container">
+              <ul class="menu">
+                <li class="menu-item"><a href="#section-hero">hero</a></li>
+                <li class="menu-item"><a href="#section-typography">type</a></li>
+                <li class="menu-item"><a href="#section-colors">colors</a></li>
+                <li class="menu-item"><a href="#section-components">components</a></li>
+                <li class="menu-item"><a href="#section-layout">layout</a></li>
+                <li class="menu-item"><a href="#section-motion">motion</a></li>
+                <li class="menu-item"><a href="#section-tech">tech</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- .site-inner -->
+  </div><!-- .site -->
+
+  <!-- ═══════════════════ KEYFRAMES (page-level only) ═══════════════════ -->
+  <style>
+    @keyframes marqueeLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+  </style>
+
+  <!-- Same JS assets as original -->
+  <script src="assets/ff1523fb7389539c_jquery-3.6.0.min.js"></script>
+  <script src="assets/0c7178cc6ca34fb1_slick.min.js"></script>
+  <script src="assets/23b9b39ea6130805_jquery.marquee.min.js"></script>
+  <script src="assets/a863a77e9ee263a0_TweenMax.min.js"></script>
+  <script src="assets/b396c6847f916f93_lottie-player.js"></script>
+  <script src="assets/6d4cb67a77ccaac1_lottie-interactivity.min.js"></script>
+
+  <script>
+    jQuery(document).ready(function ($) {
+
+      /* ── Scroll-triggered entrance animation ───────────── */
+      $.fn.isInViewport = function () {
+        var elementTop = $(this).offset().top + 50;
+        var elementBottom = elementTop + $(this).outerHeight();
+        var viewportTop = $(window).scrollTop();
+        var viewportBottom = viewportTop + $(window).height();
+        return elementBottom > viewportTop && elementTop < viewportBottom;
+      };
+
+      $(window).on("resize scroll", function () {
+        $(".animate_trigger").each(function () {
+          if ($(this).isInViewport()) {
+            $(this).addClass("animate_in");
+          }
+        });
+      });
+      $(window).scroll();
+
+      /* ── Mouse spotlight (video-on mask) ────────────────── */
+      var mouseX = 0, mouseY = 0, elementX = 0, elementY = 0, speed = 0.08;
+      function animate() {
+        var distX = mouseX - elementX - 250;
+        var distY = mouseY - elementY - 250;
+        elementX = elementX + distX * speed;
+        elementY = elementY + distY * speed;
+        $(".video-on").css("mask-position", elementX + "px " + elementY + "px");
+        $(".video-on").css("-webkit-mask-position", elementX + "px " + elementY + "px");
+        requestAnimationFrame(animate);
+      }
+      animate();
+      document.addEventListener("mousemove", function (event) {
+        mouseX = event.pageX;
+        mouseY = event.pageY;
+      });
+
+      /* ── Footer country toggle ──────────────────────────── */
+      $(".footer-white .countries .country-info").click(function () {
+        $(".footer-white .countries .country-info").removeClass("active");
+        $(".footer-white .infos.brazil").removeClass("active");
+        $(".footer-white .infos.berlin").removeClass("active");
+        $(this).addClass("active");
+        if ($(this).hasClass("brazil")) {
+          $(".footer-white .infos.brazil").addClass("active");
+        }
+        if ($(this).hasClass("berlin")) {
+          $(".footer-white .infos.berlin").addClass("active");
+        }
+      });
+
+    });
+  </script>
+
+</body>
+</html>
